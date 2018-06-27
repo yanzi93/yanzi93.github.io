@@ -259,6 +259,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/layout-3column/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/31/layout-3column/" itemprop="url">layout-3column</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T17:46:58+08:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/31/layout-3column/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/31/layout-3column/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> 圣杯布局与双飞翼布局针对的都是三列左右栏固定中间栏边框自适应的网页布局。</p>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span> </span><br><span class="line">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>针对如下DOM结构，编写CSS，实现三栏水平布局，其中left、right分别位于左右两侧，left宽度为200px，right宽度为300px，main处在中间，宽度自适应。<br>要求：</p>
+<ul>
+<li>允许增加额外的DOM节点，但不能修改现有节点顺序;</li>
+<li>三列布局，中间宽度自适应，两边定宽；</li>
+<li>中间栏要在浏览器中优先展示渲染；</li>
+<li>允许任意列的高度最高；</li>
+</ul>
+<h1 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h1><p>经典三列布局，也叫做<strong>圣杯布局【Holy Grail of Layouts】</strong>是Kevin Cornell在2006年提出的一个布局模型概念。</p>
+<p>圣杯布局是一个相对定位，通过使用float，marginleft，relative的left／ringht布局。</p>
+<ol>
+<li><p>设置基本样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.container &#123;</span><br><span class="line">    height: 200px;</span><br><span class="line">&#125;</span><br><span class="line">.main &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: #eee;</span><br><span class="line">&#125;</span><br><span class="line">.left &#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: orange;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: pink;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt; </span><br><span class="line">　　&lt;div class=&quot;main&quot;&gt;main&lt;/div&gt; </span><br><span class="line">　　&lt;div class=&quot;left&quot;&gt;left&lt;/div&gt; </span><br><span class="line">　　&lt;div class=&quot;right&quot;&gt;right&lt;/div&gt; </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/31/layout-3column/1.png" alt="圣杯1"></p>
+</li>
+<li><p>给<code>.container</code>添加padding预留出<code>.left</code>，<code>.right</code>的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    height: 200px;</span><br><span class="line">    padding: 0 300px 0 200px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/31/layout-3column/2.png" alt="圣杯2"></p>
+</li>
+<li><p>给<code>.left</code>，<code>.right</code>，<code>.main</code>添加浮动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.main, .left, .right &#123;</span><br><span class="line">	float: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/31/layout-3column/3.png" alt="圣杯3"></p>
+</li>
+<li><p>使用<code>margin-left</code>将<code>.left</code>，<code>.right</code>移动到与<code>.main</code>同行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.left &#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: orange;</span><br><span class="line">    margin-left: -100%;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: pink;</span><br><span class="line">    margin-left: -300px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/31/layout-3column/4.png" alt="圣杯4"></p>
+<p>注意：</p>
+<p><code>margin-left</code></p>
+<ul>
+<li>负的margin-left会让元素沿文档流向左移动，如果负的数值比较大就会一直移动到上一行。</li>
+<li>设置left部分的margin-left为-100%,就会使left向左移动一整个行的宽度，由于left左边是父元素的边框，所以left继续跳到上一行左移，一直移动到上一行的开头，并覆盖了main部分，left上移过后，right就会处于上一行的开头位置，这时再设置right部分margin-left为负的宽度，right就会左移到上一行的末尾。 </li>
+</ul>
+</li>
+<li><p>使用<code>left</code>,<code>right</code>将<code>.left</code>，<code>.right</code>移动到<code>.container</code>的<code>padding</code>部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.left &#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: orange;</span><br><span class="line">    margin-left: -100%;</span><br><span class="line">    position: relative;</span><br><span class="line">    left: -200px;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: pink;</span><br><span class="line">    margin-left: -300px;</span><br><span class="line">    position: relative;</span><br><span class="line">    right: -300px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/31/layout-3column/5.png" alt="圣杯5"></p>
+<p>​</p>
+</li>
+</ol>
+<h1 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h1><p>与圣杯布局相比，双飞翼布局多了一个包裹<code>.main</code>的<code>div</code>标签，但是少了css的设置。主要区别是不同在于解决”中间栏div内容不被遮挡“问题的思路不一样。</p>
+<p>代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 100%;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.main</span>, <span class="selector-class">.left</span>, <span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="undefined">    height: 100px;</span></span><br><span class="line"><span class="undefined">    float: left;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 100%;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#eee</span>;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.left</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 200px;</span></span><br><span class="line"><span class="undefined">    background: orange;</span></span><br><span class="line"><span class="undefined">    margin-left: -100%;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 300px;</span></span><br><span class="line"><span class="undefined">    background: blue;</span></span><br><span class="line"><span class="undefined">    margin-left: -300px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.content</span> &#123;</span></span><br><span class="line"><span class="undefined">    margin: 0 300px 0 200px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/31/layout-3column/21.png" alt="双飞翼"></p>
+<h1 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h1><p>相比于圣杯布局与双飞翼布局，目前更多使用flex布局。具体flex布局使用可参考博客<a href="https://yanzi93.github.io/2018/05/29/css-flex/" target="_blank" rel="noopener">flex布局</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/css-3d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1704,7 +1902,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1726,7 +1924,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
