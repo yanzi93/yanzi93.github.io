@@ -259,6 +259,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/ES6-symbol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/ES6-symbol/" itemprop="url">ES6的Symbol数据类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-29T12:02:58+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/29/ES6-symbol/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/29/ES6-symbol/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Symbol类型是ES6的新增原始数据类型，是JS的第七种数据类型。</p>
+<p>引入原因：防止对象的属性冲突，保证每个属性名都是独一无二的。</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h3 id="Symbol函数接收参数："><a href="#Symbol函数接收参数：" class="headerlink" title="Symbol函数接收参数："></a>Symbol函数接收参数：</h3><p>注意：<strong>参数指标时当前Symbol值的描述，相同参数返回值不相等</strong>。</p>
+<ul>
+<li><p>不传参数：控制台输出都为Symbol()，不利于区分。</p>
+</li>
+<li><p>字符串：表示对Symbol实例的描述，只要为了在控制台显示，或者转换为字符串时为较容易区分。</p>
+</li>
+<li>对象：调用对象的toString方法，转换为字符串。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="built_in">Symbol</span>(); <span class="comment">//不传入参数，在控制台输出相同，不利于区分。</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>(<span class="string">'abc'</span>); </span><br><span class="line"><span class="keyword">let</span> c = <span class="built_in">Symbol</span>(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">let</span> d = <span class="built_in">Symbol</span>(&#123;<span class="attr">a</span>:<span class="string">'12'</span>, <span class="attr">toString</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="string">'333'</span>&#125;&#125;);</span><br><span class="line"><span class="keyword">let</span> e = <span class="built_in">Symbol</span>(&#123;<span class="attr">a</span>:<span class="string">'12'</span>,<span class="attr">c</span>:<span class="number">54</span>&#125;);</span><br><span class="line"><span class="keyword">let</span> f = <span class="built_in">Symbol</span>(<span class="string">'abc'</span>);</span><br><span class="line"> b === f <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h3 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h3><ul>
+<li>不能进行字符串拼接</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>(<span class="string">'abc'</span>);</span><br><span class="line"><span class="string">'abc'</span> + b;  <span class="comment">//Uncaught TypeError: Cannot convert a Symbol value to a string</span></span><br><span class="line"><span class="string">`abc <span class="subst">$&#123;b&#125;</span>`</span>; <span class="comment">//Uncaught TypeError: Cannot convert a Symbol value to a string</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以转换为字符串，布尔值</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>(<span class="string">'abc'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(a)); <span class="comment">//Symbol()</span></span><br><span class="line"><span class="built_in">console</span>.log(b.toString()); <span class="comment">//Symbol('abc')</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(a)) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不能转换为数值</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>(<span class="string">'123'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(b)); <span class="comment">//Uncaught TypeError: Cannot convert a Symbol value to a number</span></span><br><span class="line">b + <span class="number">2</span>; <span class="comment">//Uncaught TypeError: Cannot convert a Symbol value to a number</span></span><br></pre></td></tr></table></figure>
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><h2 id="作为属性名"><a href="#作为属性名" class="headerlink" title="作为属性名"></a>作为属性名</h2><p>每一个Symbol值都不相等，所以其可作为标识符保证不出现同名属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="comment">// 方法一</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">obj[mySymbol] = <span class="string">'Jom'</span>;</span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    [mySymbol]: <span class="string">'Jom'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, mySymbol, &#123;<span class="attr">value</span>: <span class="string">'Jom'</span>&#125;);</span><br><span class="line"><span class="comment">// 结果，上面三个方法结果相同</span></span><br><span class="line"><span class="built_in">console</span>.log(obj[mySymbol]); <span class="comment">//Jom</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Symbol值作为对象属性名时，不能使用点运算符。使用点会认为其为字符串。</li>
+<li>在对象内部使用Symbol必须防止在方括号內。</li>
+<li>可以使用==增强对象写法==</li>
+</ul>
+<h2 id="减少代码耦合"><a href="#减少代码耦合" class="headerlink" title="减少代码耦合"></a>减少代码耦合</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> shapeType = &#123;</span><br><span class="line">  triangle: <span class="built_in">Symbol</span>() <span class="comment">//不使用字符串，防止字符串与其他属性值重名。</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArea</span>(<span class="params">shape, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> area = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">switch</span> (shape) &#123;</span><br><span class="line">    <span class="keyword">case</span> shapeType.triangle: <span class="comment">//不使用固定字符串，减少耦合</span></span><br><span class="line">      area = <span class="number">.5</span> * options.width * options.height;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> area;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getArea(shapeType.triangle, &#123; <span class="attr">width</span>: <span class="number">100</span>, <span class="attr">height</span>: <span class="number">100</span> &#125;));</span><br></pre></td></tr></table></figure>
+<h2 id="属性名遍历"><a href="#属性名遍历" class="headerlink" title="属性名遍历"></a>属性名遍历</h2><p>使用Symbol作为属性名，不会出现在<code>for in</code>,<code>in</code>,<code>for of</code>,<code>Object.keys()</code>,<code>Object.getOwnPropertyNames()</code>,<code>JSON.stringify()</code>中。但是并不能认为其是私有属性。</p>
+<ul>
+<li><code>Object.getOwnPropertySymbols()</code></li>
+</ul>
+<p>可以获得指定对象的所有Symbol属性名。返回值为当前对象所有属性名为Symbol的值。</p>
+<ul>
+<li><code>Reflect.ownKeys()</code></li>
+</ul>
+<p>返回所有类型的键名，包括常规键名和Symbol键名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  [Symbol(&apos;my_key&apos;)]: 1,</span><br><span class="line">  enum: 2,</span><br><span class="line">  nonEnum: 3</span><br><span class="line">&#125;;</span><br><span class="line">console.log(Reflect.ownKeys(obj));</span><br></pre></td></tr></table></figure>
+<h4 id="Symbol-for-Symbol-keyFor"><a href="#Symbol-for-Symbol-keyFor" class="headerlink" title="Symbol.for(),Symbol.keyFor()"></a>Symbol.for(),Symbol.keyFor()</h4><p>使用相同描述生成的Symbol是不相同的，有时希望，相同描述使用同一个Symbol值，这时可以使用Symbol.for(), Symbol.keyFor()。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>(<span class="string">'abc'</span>); </span><br><span class="line"><span class="keyword">let</span> f = <span class="built_in">Symbol</span>(<span class="string">'abc'</span>);</span><br><span class="line"> b === f <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h4 id="Symbol-for"><a href="#Symbol-for" class="headerlink" title="Symbol.for()"></a>Symbol.for()</h4><p>参数：一个字符串</p>
+<p>接收一个字符串，搜索是否有以字符串作为名称的Symbol值，如果有返回这个Symbol值，没有则创建并返回。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="built_in">Symbol</span>(<span class="string">'123'</span>);</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>.for(<span class="string">'123'</span>);</span><br><span class="line"><span class="keyword">let</span> c = <span class="built_in">Symbol</span>.for(<span class="string">'123'</span>);</span><br><span class="line">a==b;  <span class="comment">//false</span></span><br><span class="line">b==c;  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>注意：Symbol.for为Symbol值登记的名字，时全局环境的，在不同iframe，service worker中取到同一个值。</p>
+<h4 id="Symbol-keyfor"><a href="#Symbol-keyfor" class="headerlink" title="Symbol.keyfor()"></a>Symbol.keyfor()</h4><p>返回一个已经登记的Symbol类型值的key，返回类型为字符串或undefined（未登记）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="built_in">Symbol</span>(<span class="string">'1'</span>);</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>.for(<span class="string">'123'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(a), <span class="keyword">typeof</span>(<span class="built_in">Symbol</span>.keyFor(a))); <span class="comment">//undefined "undefined"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(b), <span class="keyword">typeof</span>(<span class="built_in">Symbol</span>.keyFor(b))); <span class="comment">//123 string</span></span><br></pre></td></tr></table></figure>
+<h2 id="模块Singleton模式"><a href="#模块Singleton模式" class="headerlink" title="模块Singleton模式"></a>模块Singleton模式</h2><p>Singleton模式指调用一个类，任何时候返回的都是同一个实例。</p>
+<p>将实例传送给Symbol类型，防止外部覆盖和改写。</p>
+<blockquote>
+<p> 单例模式的思路:</p>
+<p>一个类能返回对象一个引用(永远是同一个)和一个获得该实例的方法；当我们调用这个方法时，如果类持有的引用不为空就返回这个引用，如果类保持的引用为空就创建该类的实例并将实例的引用赋予该类保持的引用；同时我们还将该类的构造函数定义为私有方法，这样其他处的代码就无法通过调用该类的构造函数来实例化该类的对象，只有通过该类提供的静态方法来得到该类的唯一实例。</p>
+</blockquote>
+<h2 id="内置Symbol值"><a href="#内置Symbol值" class="headerlink" title="内置Symbol值"></a>内置Symbol值</h2><p>ES6提供了11个内置的Symbol值，指向语言内部使用的方法。</p>
+<ul>
+<li>Symbol.hasInstance</li>
+<li>Symbol.isConcatSpreadable</li>
+<li>Symbol.species</li>
+<li>Symbol.match</li>
+<li>Symbol.replace</li>
+<li>Symbol.replace</li>
+<li>Symbol.split</li>
+<li>Symbol.iterator</li>
+<li>Symbol.iterator </li>
+<li>Symbol.toStringTag</li>
+<li>Symbol.toStringTag</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/js-function/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2542,203 +2741,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/10/css-grid/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Swallow Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/10/css-grid/" itemprop="url">gird布局</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-10T15:32:32+08:00">
-                2018-06-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/10/css-grid/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/10/css-grid/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="grid基本概念"><a href="#grid基本概念" class="headerlink" title="grid基本概念"></a>grid基本概念</h1><p>grid布局是一种二维布局样式。</p>
-<h1 id="容器元素属性"><a href="#容器元素属性" class="headerlink" title="容器元素属性"></a>容器元素属性</h1><h2 id="display-grid"><a href="#display-grid" class="headerlink" title="display: grid;"></a><code>display: grid;</code></h2><p>通过display属性设置属性值为grid或inline-grid可以创建一个网格容器。网格容器中的所有子元素就会自动变成网格项目（grid item）。</p>
-<h2 id="设置网格行列"><a href="#设置网格行列" class="headerlink" title="设置网格行列"></a>设置网格行列</h2><p><code>grid-template-columns,grid-template-rows</code></p>
-<p>取值： </p>
-<ul>
-<li>none， 默认值。</li>
-<li>明确数值，<code>grid-template-columns: 40px 500px;</code></li>
-<li>fr，弹性长度。类似于flex中的<code>flex: 1;</code>。<code>grid-template-columns: 1fr 1fr 2fr</code>将总宽度分为4分，分别占1/4，1/4，1/2。<code>grid-template-columns: 400px 1fr</code>总宽度-400px剩余宽度。</li>
-<li>%，<code>grid-template-columns: 20% 80%</code></li>
-<li>minmax()，设置网格最小最大尺寸。<code>grid-template-rows: minmax(100px, auto);</code>最小100px，最大宽度自适应。</li>
-<li>repeat()，设置重复尺寸。<code>grid-template-columns: 30px repeat(2, 1fr) 30px;</code>等同于<code>grid-template-columns: 30px 1fr 1fr 30px;</code></li>
-</ul>
-<p>例子：item会按照划分的格子依次进行填充</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">    width: 500px;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: repeat(4,1fr);</span><br><span class="line">    grid-template-rows: repeat(2, 100px);</span><br><span class="line">    grid-gap: 20px 10px;</span><br><span class="line">    border: 10px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.item &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%;</span><br><span class="line">    border: 1px solid orange;</span><br><span class="line">    text-align: center;</span><br><span class="line">    font-size: 20px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;5&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;6&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;7&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;8&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/06/10/css-grid/template.png" alt="template"></p>
-<h2 id="设置网格间距"><a href="#设置网格间距" class="headerlink" title="设置网格间距"></a>设置网格间距</h2><p><code>grid-column-gap,grid-row-gap,grid-gap</code></p>
-<p>创建列与列(行与行)之间的间距。grid-gap只能创建列与列或行与行之间的间距，但不能创建列和行与网格容器边缘的间距。</p>
-<p><code>grid-gap: grid-row-gap grid-column-gap | grid-row-column-gap;</code></p>
-<ul>
-<li>默认值为0</li>
-<li>间距(Gap)可以设置任何非负值，长度值可以是px、%、em等单位值。</li>
-</ul>
-<h2 id="设置网格流向grid-auto-flow"><a href="#设置网格流向grid-auto-flow" class="headerlink" title="设置网格流向grid-auto-flow"></a>设置网格流向<code>grid-auto-flow</code></h2><p>网格默认流方向是row，可以通过grid-auto-flow属性把网格流的方向改变成column　</p>
-<p><code>grid-auto-flow: column</code></p>
-<p><img src="/2018/06/10/css-grid/grid-auto-flow.png" alt="grid-auto-flow"></p>
-<h2 id="设置网格对齐"><a href="#设置网格对齐" class="headerlink" title="设置网格对齐"></a>设置网格对齐</h2><p><code>justify-items,align-items</code>应用与网格容器上</p>
-<p><code>justify-self,align-self</code>    应用与网格项目上，单独设置网格对齐方式。</p>
-<p>取值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto | normal | start | end | center | stretch | baseline | first baseline | last baseline</span><br></pre></td></tr></table></figure>
-<h2 id="隐式网格"><a href="#隐式网格" class="headerlink" title="隐式网格"></a>隐式网格</h2><p>使用<code>grid-template-[rows,columns]</code>创建 的网格称为显示网格。当网格项目在显式网格之外时就会创建隐性网格，当没有足够的空间或者显式的网格轨道来设置网格项目，此时网格项目就会自动创建隐式网格。</p>
-<p>使用grid-auto-rows和grid-auto-columns属性可以定义隐式的网格。默认值为auto。</p>
-<h1 id="网格项目属性"><a href="#网格项目属性" class="headerlink" title="网格项目属性"></a>网格项目属性</h1><h2 id="合并网格"><a href="#合并网格" class="headerlink" title="合并网格"></a>合并网格</h2><h3 id="grid-row-column-start-grid-row-column-end"><a href="#grid-row-column-start-grid-row-column-end" class="headerlink" title="grid-[row,column]-start,grid-[row,column]-end"></a><code>grid-[row,column]-start,grid-[row,column]-end</code></h3><p>通过设置网格线，进行网格合并。网格线序号按照下图规律进行排序。</p>
-<p><img src="/2018/06/10/css-grid/grid-line.png" alt="grid-line"></p>
-<p>使用： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">    width: 500px;</span><br><span class="line">    height: 500px;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: repeat(4,1fr);</span><br><span class="line">    grid-template-rows: repeat(2, 100px);</span><br><span class="line">    /*grid-template-rows: repeat(2, 1fr) minmax(50px, 250px);*/</span><br><span class="line">    /*grid-template-rows: 200px minmax(50px, 250px);*/</span><br><span class="line">    grid-gap: 20px 10px;</span><br><span class="line">    //overflow: scroll;</span><br><span class="line">    //justify-content: space-evenly;</span><br><span class="line">    //align-content: center;</span><br><span class="line">    border: 10px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.item &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%;</span><br><span class="line">    border: 1px solid orange;</span><br><span class="line">    text-align: center;</span><br><span class="line">    font-size: 20px;</span><br><span class="line">&#125;</span><br><span class="line">.item1 &#123;</span><br><span class="line">    grid-column-start: 1;</span><br><span class="line">    grid-column-end: 3;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;item item1&quot;&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;3&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;5&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;6&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;7&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;item&quot;&gt;8&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/06/10/css-grid/start-end.png" alt="start-end"></p>
-<p>可以看出<code>grid-column-start: 1; grid-column-end: 3;</code>对网格进行了合并，其他按照顺序在剩余网格进行填充，超出网格会自动挤入下一行，宽度按照原有宽度，长度自动填充剩余父级。</p>
-<h3 id="grid-row-grid-column"><a href="#grid-row-grid-column" class="headerlink" title="grid-row,grid-column"></a><code>grid-row,grid-column</code></h3><p>简写形式</p>
-<p><code>grid-row: grid-row-start / grid-row-end | grid-row-start / span counts;</code></p>
-<p>下面三种书写方式是等价的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.item1 &#123;</span><br><span class="line">    grid-column-start: 1;</span><br><span class="line">    grid-column-end: 3;</span><br><span class="line">&#125;</span><br><span class="line">.item1 &#123;</span><br><span class="line">    grid-column: 1/3;</span><br><span class="line">&#125;</span><br><span class="line">.item1 &#123;</span><br><span class="line">    grid-column: 1/span 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="grid-area"><a href="#grid-area" class="headerlink" title="grid-area"></a><code>grid-area</code></h3><p>简写形式</p>
-<p><code>grid-area: grid-row-start / grid-column-start / grid-row-end  /  grid-column-end;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.item1 &#123;</span><br><span class="line">    grid-area: 1/1/3/3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/06/10/css-grid/grid-area.png" alt="grid-area"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2789,7 +2791,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2811,7 +2813,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
