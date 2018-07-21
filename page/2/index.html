@@ -259,6 +259,321 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/regexp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/regexp/" itemprop="url">javascript中的正则表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T20:38:05+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">javaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/22/regexp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/22/regexp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ECMAScript通过RegExp数据类型来支持正则表达式。</p>
+<h2 id="字面量形式创建"><a href="#字面量形式创建" class="headerlink" title="字面量形式创建"></a>字面量形式创建</h2><p><code>var expression = / pattern / flags ;</code></p>
+<p>匹配字符串中所有以“at“结尾的三个字符的组合，不区分大小写。</p>
+<p><code>var exp1 = /.at/gi;</code></p>
+<ul>
+<li><p>pattern：</p>
+<p>任何简单或复杂的正则表达式。可包含字符类，限定符，分组，向前查找以及反向引用。</p>
+</li>
+</ul>
+<ul>
+<li>flags：标明正则表达式的行为，支持三个标志。<ul>
+<li>g：表示全局模式，即模式将被应用于所有字符串，而非发现第一个匹配时立即停止。</li>
+<li>i：表示不区分大小写模式。</li>
+<li>m：表示多行模式，即在一行文本末尾还会继续查找下一行是否存在与模式匹配的项。</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用RegExp构造函数创建"><a href="#使用RegExp构造函数创建" class="headerlink" title="使用RegExp构造函数创建"></a>使用RegExp构造函数创建</h2><p>接收两个参数，第一个要匹配的字符串模式，第二个标志字符串。</p>
+<p><code>var expression = new RegExp( &quot;pattern&quot;, &quot;flags&quot; );</code></p>
+<p>匹配字符串中所有以“at“结尾的三个字符的组合，不区分大小写。</p>
+<p><code>var exp1 = new RegExp(&quot;.at&quot;, &quot;gi&quot;);</code></p>
+<p>注意：<strong>双转义</strong></p>
+<p>使用构造函数传入必须为字符串，在某些情况下要对字符进行双重转义。</p>
+<p>下面给出部分例子：</p>
+<table>
+<thead>
+<tr>
+<th>字面量模式</th>
+<th>等价的字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/\[bc\]at/</code></td>
+<td><code>&quot;\\[bc\\]at&quot;</code></td>
+</tr>
+<tr>
+<td><code>/\.at/</code></td>
+<td><code>&quot;\\.at&quot;</code></td>
+</tr>
+<tr>
+<td><code>/name\/age/</code></td>
+<td><code>&quot;name\\\/age&quot;</code></td>
+</tr>
+<tr>
+<td><code>/\d.\d{1,2}/</code></td>
+<td><code>&quot;\\d.\\d{1,2}&quot;</code></td>
+</tr>
+<tr>
+<td><code>/\w\\hello\\123/</code></td>
+<td><code>&quot;\\w\\\\hello\\\\123&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<p>在ES3中，正则表达式字面量始终为共享同一个RegExp实例，而使用构造函数创建的每一个新RegExp都是一个新的实例。</p>
+<p>在ES5中，明确规定字面量模式也必须创建新的实例。IE9，Firefox4+，Chrome做出了修改。</p>
+<h2 id="常用正则表达基本概念"><a href="#常用正则表达基本概念" class="headerlink" title="常用正则表达基本概念"></a>常用正则表达基本概念</h2><h3 id="pattern可包含内容："><a href="#pattern可包含内容：" class="headerlink" title="pattern可包含内容："></a>pattern可包含内容：</h3><ul>
+<li><p>普通字符：没有显示指定为元字符的所有可打印不可打印字符。</p>
+<ul>
+<li><p>非打印字符，需要进行转义。</p>
+<p><img src="/2018/06/22/regexp/特殊字符.png" alt="特殊字符"></p>
+</li>
+</ul>
+</li>
+<li><p>特殊字符</p>
+<p>具有特殊含义的字符，包括元字符。需要进行转义。</p>
+<p>使用<code>\</code>进行转义，例如我们需要匹配<code>a?b</code>则应该写成<code>var exp = /a\?b/g;</code></p>
+<p><img src="/2018/06/22/regexp/元字符.png" alt="元字符"></p>
+<p>| 字符 | 描述                                                         |<br>| —- | ———————————————————— |<br>| <code>\d</code> | 匹配一个数字字符，等价于<code>[0-9]</code>                              |<br>| <code>\D</code> | 匹配一个非数字字符，等价于<code>[^0-9]</code>                           |<br>| <code>\s</code> | 匹配任何空白字符，包括空格，制表符，换页符等。等价于<code>[\f\n\r\t\v]</code> |<br>| <code>\S</code> | 匹配任何非空白字符。等价于<code>[^\f\n\r\t\v]</code>                    |<br>| <code>\w</code> | 匹配字母，数字，下划线。等价于<code>[A-Za-z0-9_]</code>                 |<br>| <code>\w</code> | 匹配非字母，数字，下划线。等价于<code>[^A-Za-z0-9_]</code>              |</p>
+</li>
+<li><p>限定符</p>
+<p>指定正则表达式中一个给定组件出现的次数。</p>
+<p>| 字符  | 描述              |<br>| —– | —————– |<br>| *     | 0或多次           |<br>| +     | 1或多次           |<br>| ？    | 0或1              |<br>| {n}   | n次               |<br>| {n,}  | 大于等于n次       |<br>| {n,m} | n-m次（包含n，m） |</p>
+<p><strong>贪心模式和非贪心模式转换</strong></p>
+<p><code>*,+</code>都是贪心模式，尽可能匹配多的字符串，当在<code>*,+</code>后面放置<code>?</code>可以将贪心模式转换为非贪心模式（最小匹配）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;H1&gt;Chapter 1 - 介绍正则表达式&lt;/H1&gt;'</span>;</span><br><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/&lt;.*&gt;/g</span>;</span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/&lt;.*?&gt;/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(pattern1.exec(str)[<span class="number">0</span>]); <span class="comment">//&lt;H1&gt;Chapter 1 - 介绍正则表达式&lt;/H1&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern2.exec(str)[<span class="number">0</span>]); <span class="comment">//&lt;H1&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定位符</p>
+<p>| 字符 | 描述                                                         |<br>| —- | ———————————————————— |<br>| ^    | 匹配输入字符串开始的位置。如果设置了m模式，还会与\n,\r之后的位置匹配。 |<br>| $    | 匹配输入字符串结束的位置。如果设置了m模式，还会与\n,\r之前的位置匹配。 |<br>| \b   | 匹配一个字边界，即字与空格间的位置。                         |<br>| \B   | 非字边界匹配。                                               |</p>
+</li>
+<li><p>选择</p>
+<p><code>(选择1 | 选择2 | 选择3)</code></p>
+<p>圆括号副作用会使相关匹配被缓存，可使用<code>?:</code>消除缓存<code>?:(选择1 | 选择2 | 选择3)</code></p>
+</li>
+</ul>
+<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><p>从左到右进行计算，训训有限即规则</p>
+<h2 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h2><p>RegExp每个实例都具有以下属性，可以获得有关模式信息</p>
+<ul>
+<li>global：布尔值，是否设置g</li>
+<li>ignoreCase：布尔值，是否设置i</li>
+<li>lastIndex：整数，表示开始搜索下一个匹配项的字符位置，从0起算</li>
+<li>multiline：布尔值，是否设置m</li>
+<li>source：正则表达式的字符串表示，按照字面量形式字符串返回（即使使用构造函数创建）。</li>
+</ul>
+<h2 id="RegExp实例方法"><a href="#RegExp实例方法" class="headerlink" title="RegExp实例方法"></a>RegExp实例方法</h2><h3 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h3><ul>
+<li><p>参数（1个）：要应用模式的字符串。</p>
+</li>
+<li><p>返回值（Array）：包含第一个匹配项信息的数组，没有匹配项情况下返回null。</p>
+<p>两个额外属性：index（匹配项在字符串中的位置），input（应用正则表达式的字符串）。</p>
+<p>第一项：与整个模式匹配的字符串，其它项是与模式中的捕获组匹配的字符串。</p>
+</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'moom and dad and baby'</span>;</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/moom( and dad( and baby))/gi</span>;</span><br><span class="line"><span class="keyword">var</span> result = pattern.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">["moom and dad and baby", " and dad and baby", " and baby", index: 0, input: "moom and dad and baby", groups: undefined]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">0: "moom and dad and baby"</span></span><br><span class="line"><span class="comment">1: " and dad and baby"</span></span><br><span class="line"><span class="comment">2: " and baby"</span></span><br><span class="line"><span class="comment">groups: undefined</span></span><br><span class="line"><span class="comment">index: 0</span></span><br><span class="line"><span class="comment">input: "moom and dad and baby"</span></span><br><span class="line"><span class="comment">length: 3</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(result.index); <span class="comment">//0</span></span><br><span class="line"><span class="built_in">console</span>.log(result.input); <span class="comment">//"moom and dad and baby"</span></span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">//"moom and dad and baby"</span></span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">1</span>]]); <span class="comment">//" and dad and baby"</span></span><br></pre></td></tr></table></figure>
+<p>对于exec()每次仅返回一个匹配项，即使设置了全局标志g。</p>
+<ul>
+<li><p>若不设置g，在同一个字符串上多次调用exec()始终返回第一个匹配项信息（始终从字符串开始检测）。</p>
+</li>
+<li><p>若设置g，在同一个字符串上多次调用exec()则会在上一次位置继续进行匹配。可通过查看实例属性（lastIndex查看）</p>
+</li>
+<li><p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'cat, bat, sat, fat'</span>;</span><br><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/.at/</span>;</span><br><span class="line"><span class="keyword">var</span> result1 = pattern1.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.lastIndex ,result1[<span class="number">0</span>], result1.index); <span class="comment">//0 "cat" 0</span></span><br><span class="line">result1 = pattern1.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.lastIndex ,result1[<span class="number">0</span>], result1.index); <span class="comment">//0 "cat" 0</span></span><br><span class="line">result1 = pattern1.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.lastIndex ,result1[<span class="number">0</span>], result1.index); <span class="comment">//0 "cat" 0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/.at/g</span>;</span><br><span class="line"><span class="keyword">var</span> result2 = pattern2.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.lastIndex, result2[<span class="number">0</span>], result2.index); <span class="comment">//0 "cat" 0</span></span><br><span class="line">result2 = pattern2.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.lastIndex, result2[<span class="number">0</span>], result2.index); <span class="comment">//0 "bat" 5</span></span><br><span class="line">result2 = pattern2.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.lastIndex, result2[<span class="number">0</span>], result2.index); <span class="comment">//0 "sat" 10</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> IE存在偏差，非全局也会下lastIndex属性也会每次变化。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="test"><a href="#test" class="headerlink" title="test()"></a>test()</h3><ul>
+<li>参数（1个）：要应用模式的字符串。</li>
+<li>输出（布尔值）：模式与输入参数匹配返回true，否则false</li>
+</ul>
+<p>常被用于if语句中判断目标字符串是否与模式匹配的简单检测。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'cat, bat, sat, fat'</span>;</span><br><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/.at/gi</span>;</span><br><span class="line"><span class="keyword">if</span> (pattern1.test(str)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(pattern1.test(str));  <span class="comment">//true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="toString-toLocaleString"><a href="#toString-toLocaleString" class="headerlink" title="toString(),toLocaleString()"></a>toString(),toLocaleString()</h3><p>返回正则表达式的字面量。（标准形式）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/\..at/g</span>;</span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\..at"</span>, <span class="string">"g"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.toString()); <span class="comment">///\..at/g</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern2.toString()); <span class="comment">///\..at/g</span></span><br></pre></td></tr></table></figure>
+<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>返回正则表达式本身</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/\..at/g</span>;</span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\..at"</span>, <span class="string">"g"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(pattern1.valueOf()) <span class="comment">///\..at/g</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern2.valueOf()) <span class="comment">///\..at/g</span></span><br></pre></td></tr></table></figure>
+<h2 id="支持正则表达式的String对象的方法"><a href="#支持正则表达式的String对象的方法" class="headerlink" title="支持正则表达式的String对象的方法"></a>支持正则表达式的String对象的方法</h2><h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p><code>string.search(searchvalue);</code></p>
+<p>用于检索字符串中指定的字字符串，或检索与正则表达式想匹配的字符串。</p>
+<p>返回匹配开始的下标，若没有找到匹配字串，返回-1。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello World world'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="string">'World'</span>)); <span class="comment">//6</span></span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="regexp">/world/gi</span>)); <span class="comment">//6</span></span><br></pre></td></tr></table></figure>
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><p><code>string.match(regexp);</code></p>
+<p>在字符串內检索指定的值，返回一个数组存储匹配的结果（很大程度上取决于是否有全局标志g）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello World world'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="regexp">/world/gi</span>)); <span class="comment">//["World", "world"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="string">'world'</span>)); <span class="comment">//["world", index: 12, input: "Hello World world", groups: undefined]</span></span><br></pre></td></tr></table></figure>
+<h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><p><code>string.replace(searchvalue, newvalue);</code></p>
+<p>在字符串中使用一些字符替换另一些指定字符，或替换一个与正则表达式匹配的字符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello World world'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="regexp">/world/gi</span>, <span class="string">'Tom'</span>)); <span class="comment">//Hello Tom Tom</span></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="string">'world'</span>, <span class="string">'Tom'</span>)); <span class="comment">//Hello World Tom</span></span><br></pre></td></tr></table></figure>
+<h3 id="split"><a href="#split" class="headerlink" title="split"></a>split</h3><p><code>string.split(separator, limit);</code></p>
+<ul>
+<li>separator: 可选，指定分割位置。</li>
+<li>limit：可选，指定返回数组的最大长度。</li>
+</ul>
+<p>把一个字符串分割成字符串数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str=<span class="string">"How are you doing, today?"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.split()); <span class="comment">//["How are you doing, today?"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="string">','</span>));<span class="comment">//["How are you doing", " today?"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="string">' '</span>));<span class="comment">//["How", "are", "you", "doing,", "today?"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="string">''</span>));<span class="comment">//["H", "o", "w", " ", "a", "r", "e", " ", "y", "o", "u", " ", "d", "o", "i", "n", "g", ",", " ", "t", "o", "d", "a", "y", "?"]</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用增则表达式总结"><a href="#常用增则表达式总结" class="headerlink" title="常用增则表达式总结"></a>常用增则表达式总结</h2><p><a href="https://c.runoob.com/front-end/854" target="_blank" rel="noopener">菜鸟总结</a></p>
+<h3 id="数字类"><a href="#数字类" class="headerlink" title="数字类"></a>数字类</h3><ul>
+<li>数字<code>\^[0-9]*$\</code></li>
+<li>零或非零开头的数字<code>\^(0|[1-9][0-9]*)$\</code></li>
+<li>非零开头的最多带两位小数的数字<code>\^([1-9][0-9]*)+(\.[0-9]{1-2})$\</code></li>
+<li>带1-2位小数的正数或负数<code>\^(\-|\+)?\d+(\.\d{1,2})\</code></li>
+</ul>
+<h3 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h3><ul>
+<li>汉字<code>\^[\u4e00-\u9fa5]{0,}$\</code></li>
+<li>英文和数字<code>\[A-Za-z0-9]+\</code></li>
+<li>有数字，英文字母或者下划线组成的字符串<code>\^\w+$\</code></li>
+<li>禁止输入含有~的字符<code>\  ~\x22 \</code></li>
+</ul>
+<h3 id="特殊需求表达式"><a href="#特殊需求表达式" class="headerlink" title="特殊需求表达式"></a>特殊需求表达式</h3><ul>
+<li>Email地址:  <code>\^\w+([-+.]\w+)\*@\w+([-.]\w+)*\.\w+([-.]\w+)*$\</code></li>
+<li>腾讯QQ号：<code>\^[1-9][0-9]{4,}$\</code>   (腾讯QQ号从10000开始)</li>
+<li>中国邮政编码：<code>\^[1-9]\d{5}(?!\d)\</code>    (中国邮政编码为6位数字)</li>
+<li>日期格式：<code>\^\d{4}-\d{1,2}-\d{1,2}</code>\</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/algorithm-sort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1309,7 +1624,7 @@
 </ol>
 <h1 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h1><p>与圣杯布局相比，双飞翼布局多了一个包裹<code>.main</code>的<code>div</code>标签，但是少了css的设置。主要区别是不同在于解决”中间栏div内容不被遮挡“问题的思路不一样。</p>
 <p>代码如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">.container &#123;</span></span><br><span class="line"><span class="undefined">    width: 100%;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.main, .left, .right &#123;</span></span><br><span class="line"><span class="undefined">    height: 100px;</span></span><br><span class="line"><span class="undefined">    float: left;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.main &#123;</span></span><br><span class="line"><span class="undefined">    width: 100%;</span></span><br><span class="line"><span class="undefined">    background: #eee;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.left &#123;</span></span><br><span class="line"><span class="undefined">    width: 200px;</span></span><br><span class="line"><span class="undefined">    background: orange;</span></span><br><span class="line"><span class="undefined">    margin-left: -100%;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.right &#123;</span></span><br><span class="line"><span class="undefined">    width: 300px;</span></span><br><span class="line"><span class="undefined">    background: blue;</span></span><br><span class="line"><span class="undefined">    margin-left: -300px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.content &#123;</span></span><br><span class="line"><span class="undefined">    margin: 0 300px 0 200px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 100%;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.main</span>, <span class="selector-class">.left</span>, <span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="undefined">    height: 100px;</span></span><br><span class="line"><span class="undefined">    float: left;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 100%;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#eee</span>;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.left</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 200px;</span></span><br><span class="line"><span class="undefined">    background: orange;</span></span><br><span class="line"><span class="undefined">    margin-left: -100%;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 300px;</span></span><br><span class="line"><span class="undefined">    background: blue;</span></span><br><span class="line"><span class="undefined">    margin-left: -300px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.content</span> &#123;</span></span><br><span class="line"><span class="undefined">    margin: 0 300px 0 200px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml">　　<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p><img src="/2018/05/31/layout-3column/21.png" alt="双飞翼"></p>
 <h1 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h1><p>相比于圣杯布局与双飞翼布局，目前更多使用flex布局。具体flex布局使用可参考博客<a href="https://yanzi93.github.io/2018/05/29/css-flex/" target="_blank" rel="noopener">flex布局</a></p>
 
@@ -2008,9 +2323,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &apos;~styles/mixins.styl&apos;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在具体不问进行函数调用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">@import '~styles/mixins.styl'</span></span><br><span class="line"><span class="undefined">  .icon-desc</span></span><br><span class="line"><span class="undefined">    position: absolute</span></span><br><span class="line"><span class="undefined">    left: 0</span></span><br><span class="line"><span class="undefined">    right 0</span></span><br><span class="line"><span class="undefined">    bottom: 0</span></span><br><span class="line"><span class="undefined">    height: .44rem</span></span><br><span class="line"><span class="undefined">    line-height: .44rem</span></span><br><span class="line"><span class="undefined">    color: $darkTextColor</span></span><br><span class="line"><span class="undefined">    text-align: center</span></span><br><span class="line"><span class="undefined">    ellipsis()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">@<span class="keyword">import</span> <span class="string">'~styles/mixins.styl'</span></span></span><br><span class="line"><span class="css">  <span class="selector-class">.icon-desc</span></span></span><br><span class="line"><span class="undefined">    position: absolute</span></span><br><span class="line"><span class="undefined">    left: 0</span></span><br><span class="line"><span class="undefined">    right 0</span></span><br><span class="line"><span class="undefined">    bottom: 0</span></span><br><span class="line"><span class="css">    <span class="selector-tag">height</span>: <span class="selector-class">.44rem</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">line-height</span>: <span class="selector-class">.44rem</span></span></span><br><span class="line"><span class="undefined">    color: $darkTextColor</span></span><br><span class="line"><span class="undefined">    text-align: center</span></span><br><span class="line"><span class="undefined">    ellipsis()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面的设置等同于</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">@import '~styles/mixins.styl'</span></span><br><span class="line"><span class="undefined">  .icon-desc</span></span><br><span class="line"><span class="undefined">    position: absolute</span></span><br><span class="line"><span class="undefined">    left: 0</span></span><br><span class="line"><span class="undefined">    right 0</span></span><br><span class="line"><span class="undefined">    bottom: 0</span></span><br><span class="line"><span class="undefined">    height: .44rem</span></span><br><span class="line"><span class="undefined">    line-height: .44rem</span></span><br><span class="line"><span class="undefined">    color: $darkTextColor</span></span><br><span class="line"><span class="undefined">    text-align: center</span></span><br><span class="line"><span class="undefined">    overflow: hidden</span></span><br><span class="line"><span class="undefined">    white-space: nowrap</span></span><br><span class="line"><span class="undefined">    text-overflow: ellipsis</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">@<span class="keyword">import</span> <span class="string">'~styles/mixins.styl'</span></span></span><br><span class="line"><span class="css">  <span class="selector-class">.icon-desc</span></span></span><br><span class="line"><span class="undefined">    position: absolute</span></span><br><span class="line"><span class="undefined">    left: 0</span></span><br><span class="line"><span class="undefined">    right 0</span></span><br><span class="line"><span class="undefined">    bottom: 0</span></span><br><span class="line"><span class="css">    <span class="selector-tag">height</span>: <span class="selector-class">.44rem</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">line-height</span>: <span class="selector-class">.44rem</span></span></span><br><span class="line"><span class="undefined">    color: $darkTextColor</span></span><br><span class="line"><span class="undefined">    text-align: center</span></span><br><span class="line"><span class="undefined">    overflow: hidden</span></span><br><span class="line"><span class="undefined">    white-space: nowrap</span></span><br><span class="line"><span class="undefined">    text-overflow: ellipsis</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>使用webpack构建的文件中，static文件可以直接被外部访问。把本地数据放置在发文夹下<code>static/mock</code></p>
@@ -2089,10 +2404,10 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">swiper</span> <span class="attr">:options</span>=<span class="string">"swiperOption"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">swiper-slide</span> <span class="attr">v-for</span>=<span class="string">"item of swiperList"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"swiper-img"</span> <span class="attr">:src</span>=<span class="string">"item.imgUrl"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">swiper-slide</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"swiper-pagination"</span>  <span class="attr">slot</span>=<span class="string">"pagination"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">swiper</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">'HomeSwiper'</span>,</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">      swiperOption: &#123;</span></span><br><span class="line"><span class="javascript">        pagination: <span class="string">'.swiper-pagination'</span>,</span></span><br><span class="line"><span class="javascript">        loop: <span class="literal">true</span></span></span><br><span class="line"><span class="undefined">      &#125;,</span></span><br><span class="line"><span class="undefined">      swiperList: [&#123;</span></span><br><span class="line"><span class="javascript">        id: <span class="string">'0001'</span>,</span></span><br><span class="line"><span class="javascript">        imgUrl: <span class="string">'http://img1.qunarzz.com/piao/fusion/1804/f2/91b285a08ee21c02.jpg_750x200_8a73fd08.jpg'</span></span></span><br><span class="line"><span class="undefined">      &#125;, &#123;</span></span><br><span class="line"><span class="javascript">        id: <span class="string">'0002'</span>,</span></span><br><span class="line"><span class="javascript">        imgUrl: <span class="string">'http://img1.qunarzz.com/piao/fusion/1805/34/5296842ff0cc9702.jpg_750x200_608644ed.jpg'</span></span></span><br><span class="line"><span class="undefined">      &#125;, &#123;</span></span><br><span class="line"><span class="javascript">        id: <span class="string">'0003'</span>,</span></span><br><span class="line"><span class="javascript">        imgUrl: <span class="string">'http://img1.qunarzz.com/piao/fusion/1803/ff/86d79cd397cbe802.jpg_750x200_41ce1524.jpg'</span></span></span><br><span class="line"><span class="undefined">      &#125;]</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">// 设置部分</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>方法一</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">.wrapper</span></span><br><span class="line"><span class="undefined">  overflow: hidden</span></span><br><span class="line"><span class="undefined">  width: 100%</span></span><br><span class="line"><span class="undefined">  height: 0</span></span><br><span class="line"><span class="undefined">  padding-bottom: 26.5%</span></span><br><span class="line"><span class="undefined">  background: #ccc</span></span><br><span class="line"><span class="undefined">  .swiper-img</span></span><br><span class="line"><span class="undefined">    width: 100%</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.wrapper</span></span></span><br><span class="line"><span class="undefined">  overflow: hidden</span></span><br><span class="line"><span class="undefined">  width: 100%</span></span><br><span class="line"><span class="undefined">  height: 0</span></span><br><span class="line"><span class="css">  <span class="selector-tag">padding-bottom</span>: 26<span class="selector-class">.5</span>%</span></span><br><span class="line"><span class="css">  <span class="selector-tag">background</span>: <span class="selector-id">#ccc</span></span></span><br><span class="line"><span class="css">  <span class="selector-class">.swiper-img</span></span></span><br><span class="line"><span class="undefined">    width: 100%</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>方法二</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">.wrapper</span></span><br><span class="line"><span class="undefined">  width: 100%</span></span><br><span class="line"><span class="undefined">  height: 26.5vw</span></span><br><span class="line"><span class="undefined">  background: #ccc</span></span><br><span class="line"><span class="undefined">  .swiper-img</span></span><br><span class="line"><span class="undefined">    width: 100%</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"stylus"</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.wrapper</span></span></span><br><span class="line"><span class="undefined">  width: 100%</span></span><br><span class="line"><span class="css">  <span class="selector-tag">height</span>: 26<span class="selector-class">.5vw</span></span></span><br><span class="line"><span class="css">  <span class="selector-tag">background</span>: <span class="selector-id">#ccc</span></span></span><br><span class="line"><span class="css">  <span class="selector-class">.swiper-img</span></span></span><br><span class="line"><span class="undefined">    width: 100%</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>方法一兼容性优于方法二。（26.5为图片宽高比）</p>
@@ -2385,237 +2700,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/29/webAppReader/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Swallow Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/29/webAppReader/" itemprop="url">webAppReader</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T13:53:34+08:00">
-                2018-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webApp/" itemprop="url" rel="index">
-                    <span itemprop="name">webApp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/29/webAppReader/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/04/29/webAppReader/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="webApp-书城开发-一阅读器页面部分"><a href="#webApp-书城开发-一阅读器页面部分" class="headerlink" title="webApp 书城开发(一阅读器页面部分)"></a>webApp 书城开发(一阅读器页面部分)</h1><h2 id="小谈"><a href="#小谈" class="headerlink" title="小谈"></a>小谈</h2><p>记录慕课网webApp 书城开发实战课程</p>
-<p><img src="/2018/04/29/webAppReader/Users/lixueyan/Desktop/1.png" alt="屏幕快照 2018-04-29 下午4.53.39"></p>
-<h2 id="涉及技术"><a href="#涉及技术" class="headerlink" title="涉及技术"></a>涉及技术</h2><p>HTML5，CSS3，javascript，Ajax，zepto，vue，ES6，nodejs，npm，KOA</p>
-<h2 id="技术简介"><a href="#技术简介" class="headerlink" title="技术简介"></a>技术简介</h2><p>###HTML5 应用场景</p>
-<ul>
-<li>新增加API接口<ul>
-<li>Local storage: 提高用户本地存储。</li>
-<li>Web Worker:  后台计算线程，所有与UI相关的不能使用；解决js单线程问题，能够把js计算委托给后台线程，防止交互事件缓慢；在API接口提供前使用setTimeout。</li>
-<li>XMLHttpRequest： 解决跨域请求。</li>
-</ul>
-</li>
-<li>基于webview 的hybrid native App开发更加灵活。</li>
-</ul>
-<h3 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h3><ul>
-<li>体积小。</li>
-<li>对于webApp近乎不用考虑兼容问题。</li>
-</ul>
-<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><ul>
-<li>在不重新加载页面情况下，与服务器交换数据并更新部分网页内容</li>
-<li>不需要任何插件</li>
-</ul>
-<h3 id="ES6-Promise"><a href="#ES6-Promise" class="headerlink" title="ES6 Promise"></a>ES6 Promise</h3><ul>
-<li>一个保存某个未来才会结束的事件</li>
-<li>特点： <ul>
-<li>不受外间干扰。只有pending，fulfilled，rejected状态，由异步造作结果决定。</li>
-<li>状态只改变一次。</li>
-<li>相比回调函数，避免层层嵌套。</li>
-</ul>
-</li>
-<li>缺点： <ul>
-<li>一旦建立立即执行</li>
-<li>不但发生的事件，不建议使用</li>
-</ul>
-</li>
-</ul>
-<h2 id="移动端性能问题"><a href="#移动端性能问题" class="headerlink" title="移动端性能问题"></a>移动端性能问题</h2><ul>
-<li>减少或避免repaint，reflow。<ul>
-<li>减少对DOM的操作</li>
-<li>改变Class而不是style，使用classList而不是className</li>
-<li>避免使用docuement.write</li>
-<li>减少drawImage</li>
-</ul>
-</li>
-<li>缓存一切可以缓存的数据<ul>
-<li>使用HTML5的local.stroage减少向服务器的请求次数。</li>
-</ul>
-</li>
-<li>使用CSS3动画代替DOM操作</li>
-<li>适当使用硬件加速<ul>
-<li>CSS3 中transitions、CSS3 3D transforms、Opacity、Canvas、WebGL、Video会触发GPU加速</li>
-</ul>
-</li>
-</ul>
-<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><p>交互解读 - 设计解读 - 开发 - 测试</p>
-<p>技术原则： 轻量化，维护简单，快速开发，高性能</p>
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
-<li>webAppReader<ul>
-<li>mock   // 模拟数据  存放json 模拟数据</li>
-<li>node_modules  //node模块  运行npm下载的nodejs依赖包</li>
-<li>service  // 服务层 读取数据文件处理</li>
-<li>static  // 静态文件 css，img，js</li>
-<li>view  // 通用模版，子模块</li>
-<li>app.js   // 入口</li>
-</ul>
-</li>
-</ul>
-<h2 id="程序编写"><a href="#程序编写" class="headerlink" title="程序编写"></a>程序编写</h2><h3 id="阅读器部分"><a href="#阅读器部分" class="headerlink" title="阅读器部分"></a>阅读器部分</h3><h4 id="功能分层"><a href="#功能分层" class="headerlink" title="功能分层"></a>功能分层</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/script/zepto.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.jQuery = $;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/script/jquery.base64.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/script/jquery.jsonp.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> Dom = &#123; </span></span><br><span class="line"><span class="javascript">    <span class="comment">// 声明变量。 对于多次用到的Dom，设置成变量，防止多次获取对象。</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="javascript">    <span class="comment">// 使用local.storage缓存数据进行初始化。</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> Util = <span class="function"><span class="keyword">function</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//封装常用自带函数</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对local.storage封装。通常会加前缀防止覆盖。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> prefix = <span class="string">"html5_reader_"</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> StorageGetter = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> localStorage.getItem(prefix + key);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> StorageSetter = <span class="function"><span class="keyword">function</span> (<span class="params">key, val</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> localStorage.setItem(prefix + key, val);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对于jsonp数据的解密。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> GetBSONP = <span class="function"><span class="keyword">function</span> (<span class="params">url, callback</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> $.jsonp(<span class="comment">/* Todo*/</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 暴露函数，供外部使用</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">          StorageSetter: StorageSetter,</span></span><br><span class="line"><span class="undefined">          StorageGetter: StorageGetter,</span></span><br><span class="line"><span class="undefined">          GetBSONP: GetBSONP</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;(); <span class="comment">//note: 直接调用执行</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">main</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 整个项目入口函数</span></span></span><br><span class="line"><span class="undefined">        readerModel = ReaderModel();</span></span><br><span class="line"><span class="undefined">        readerUI = ReaderBaseFrame(RootContainer);</span></span><br><span class="line"><span class="javascript">        readerModel.initPromise().then( <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">          readerUI(data)</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">        EventHandler();</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">ReaderMode</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">//实现阅读器相关的数据相互</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 1. 读取章节信息后加在对应章节数据。 2. 将数据传给ReaderBaseFrame() 进行渲染。</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//note:  使用ES6的promise，减少会回调函数的使用。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> Chapter_id;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> ChapterTotal;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 初始化，暴露函数，创建promise对象。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> initPromise = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            getFictionInfoPromise().then(<span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> getCurChapterContentPromise();</span></span><br><span class="line"><span class="javascript">            &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">              resolve(data);</span></span><br><span class="line"><span class="undefined">            &#125;)</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 读取章节信息</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> getFictionInfoPromise = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            $.get(<span class="string">'/ajax/chapter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span>(data.result == <span class="number">0</span>) &#123; <span class="comment">//此处有省略，只显示基本结构</span></span></span><br><span class="line"><span class="undefined">                    resolve();</span></span><br><span class="line"><span class="javascript">                 &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="undefined">                    reject();</span></span><br><span class="line"><span class="undefined">                &#125; </span></span><br><span class="line"><span class="javascript">              &#125;, <span class="string">'json'</span>);</span></span><br><span class="line"><span class="undefined">            &#125;);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">       <span class="comment">// 读取对应章节数据</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> getCurChapterContentPromise = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </span></span><br><span class="line"><span class="javascript">              <span class="comment">// get data</span></span></span><br><span class="line"><span class="undefined">          &#125;);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对于阅读器中前一章，后一章数据处理。</span></span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 暴露函数</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">         </span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">         </span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">ReaderBaseFrame</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 渲染基本的UI结构</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">parseChapterData</span> (<span class="params">jsonData</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">// 向Dom中添加章节数据</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">          container.html(parseChapterData(data));</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">EventHandler</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 交互事件绑定</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对于页面中各种可操作按钮进行绑定，包括返回，前后一章，面板（字体，背景色，夜间／白天模式），屏幕滚动等</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 屏幕滚动</span></span></span><br><span class="line"><span class="javascript">        $(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">          Dom.top_nav.hide();</span></span><br><span class="line"><span class="undefined">          Dom.bottom_nav.hide();</span></span><br><span class="line"><span class="undefined">          Dom.font_container.hide();</span></span><br><span class="line"><span class="javascript">            Dom.font_button.removeClass(<span class="string">'active-icon'</span>);</span></span><br><span class="line"><span class="undefined">        &#125;); </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 字体放大</span></span></span><br><span class="line"><span class="javascript">        $(<span class="string">'#large_font'</span>).click( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">if</span>(initFontSize &gt; <span class="number">20</span>) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span>;</span></span><br><span class="line"><span class="undefined">          &#125;</span></span><br><span class="line"><span class="undefined">          initFontSize += 1;</span></span><br><span class="line"><span class="javascript">          RootContainer.css(<span class="string">'font-size'</span>, initFontSize);</span></span><br><span class="line"><span class="javascript">          Util.StorageSetter(<span class="string">'font_size'</span>, initFontSize);</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 其他事件略</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="javascript">    <span class="comment">// 主函数调用</span></span></span><br><span class="line"><span class="undefined">    main();</span></span><br><span class="line"><span class="undefined">&#125;)();</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h4><ul>
-<li><p>touch与click</p>
-<ul>
-<li>对于移动端在Android 4.0 之前click 存在300ms的延迟。即现触发touchstart - touchmove - touchend - touchcancel 在触发click。</li>
-<li>对于Android 4.0  之后版本，click与touch相同。但click能使页面兼容PC端。</li>
-</ul>
-</li>
-<li><p>json数据请求和jsonp数据解密</p>
-<p>​</p>
-</li>
-</ul>
-<p>## </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2666,7 +2750,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

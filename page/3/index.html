@@ -259,6 +259,237 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/29/webAppReader/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/29/webAppReader/" itemprop="url">webAppReader</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T13:53:34+08:00">
+                2018-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webApp/" itemprop="url" rel="index">
+                    <span itemprop="name">webApp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/29/webAppReader/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/29/webAppReader/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="webApp-书城开发-一阅读器页面部分"><a href="#webApp-书城开发-一阅读器页面部分" class="headerlink" title="webApp 书城开发(一阅读器页面部分)"></a>webApp 书城开发(一阅读器页面部分)</h1><h2 id="小谈"><a href="#小谈" class="headerlink" title="小谈"></a>小谈</h2><p>记录慕课网webApp 书城开发实战课程</p>
+<p><img src="/2018/04/29/webAppReader/Users/lixueyan/Desktop/1.png" alt="屏幕快照 2018-04-29 下午4.53.39"></p>
+<h2 id="涉及技术"><a href="#涉及技术" class="headerlink" title="涉及技术"></a>涉及技术</h2><p>HTML5，CSS3，javascript，Ajax，zepto，vue，ES6，nodejs，npm，KOA</p>
+<h2 id="技术简介"><a href="#技术简介" class="headerlink" title="技术简介"></a>技术简介</h2><p>###HTML5 应用场景</p>
+<ul>
+<li>新增加API接口<ul>
+<li>Local storage: 提高用户本地存储。</li>
+<li>Web Worker:  后台计算线程，所有与UI相关的不能使用；解决js单线程问题，能够把js计算委托给后台线程，防止交互事件缓慢；在API接口提供前使用setTimeout。</li>
+<li>XMLHttpRequest： 解决跨域请求。</li>
+</ul>
+</li>
+<li>基于webview 的hybrid native App开发更加灵活。</li>
+</ul>
+<h3 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h3><ul>
+<li>体积小。</li>
+<li>对于webApp近乎不用考虑兼容问题。</li>
+</ul>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><ul>
+<li>在不重新加载页面情况下，与服务器交换数据并更新部分网页内容</li>
+<li>不需要任何插件</li>
+</ul>
+<h3 id="ES6-Promise"><a href="#ES6-Promise" class="headerlink" title="ES6 Promise"></a>ES6 Promise</h3><ul>
+<li>一个保存某个未来才会结束的事件</li>
+<li>特点： <ul>
+<li>不受外间干扰。只有pending，fulfilled，rejected状态，由异步造作结果决定。</li>
+<li>状态只改变一次。</li>
+<li>相比回调函数，避免层层嵌套。</li>
+</ul>
+</li>
+<li>缺点： <ul>
+<li>一旦建立立即执行</li>
+<li>不但发生的事件，不建议使用</li>
+</ul>
+</li>
+</ul>
+<h2 id="移动端性能问题"><a href="#移动端性能问题" class="headerlink" title="移动端性能问题"></a>移动端性能问题</h2><ul>
+<li>减少或避免repaint，reflow。<ul>
+<li>减少对DOM的操作</li>
+<li>改变Class而不是style，使用classList而不是className</li>
+<li>避免使用docuement.write</li>
+<li>减少drawImage</li>
+</ul>
+</li>
+<li>缓存一切可以缓存的数据<ul>
+<li>使用HTML5的local.stroage减少向服务器的请求次数。</li>
+</ul>
+</li>
+<li>使用CSS3动画代替DOM操作</li>
+<li>适当使用硬件加速<ul>
+<li>CSS3 中transitions、CSS3 3D transforms、Opacity、Canvas、WebGL、Video会触发GPU加速</li>
+</ul>
+</li>
+</ul>
+<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><p>交互解读 - 设计解读 - 开发 - 测试</p>
+<p>技术原则： 轻量化，维护简单，快速开发，高性能</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>webAppReader<ul>
+<li>mock   // 模拟数据  存放json 模拟数据</li>
+<li>node_modules  //node模块  运行npm下载的nodejs依赖包</li>
+<li>service  // 服务层 读取数据文件处理</li>
+<li>static  // 静态文件 css，img，js</li>
+<li>view  // 通用模版，子模块</li>
+<li>app.js   // 入口</li>
+</ul>
+</li>
+</ul>
+<h2 id="程序编写"><a href="#程序编写" class="headerlink" title="程序编写"></a>程序编写</h2><h3 id="阅读器部分"><a href="#阅读器部分" class="headerlink" title="阅读器部分"></a>阅读器部分</h3><h4 id="功能分层"><a href="#功能分层" class="headerlink" title="功能分层"></a>功能分层</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/script/zepto.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.jQuery = $;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/script/jquery.base64.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/script/jquery.jsonp.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> Dom = &#123; </span></span><br><span class="line"><span class="javascript">    <span class="comment">// 声明变量。 对于多次用到的Dom，设置成变量，防止多次获取对象。</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="javascript">    <span class="comment">// 使用local.storage缓存数据进行初始化。</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> Util = <span class="function"><span class="keyword">function</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//封装常用自带函数</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对local.storage封装。通常会加前缀防止覆盖。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> prefix = <span class="string">"html5_reader_"</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> StorageGetter = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> localStorage.getItem(prefix + key);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> StorageSetter = <span class="function"><span class="keyword">function</span> (<span class="params">key, val</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> localStorage.setItem(prefix + key, val);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对于jsonp数据的解密。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> GetBSONP = <span class="function"><span class="keyword">function</span> (<span class="params">url, callback</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> $.jsonp(<span class="comment">/* Todo*/</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 暴露函数，供外部使用</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">          StorageSetter: StorageSetter,</span></span><br><span class="line"><span class="undefined">          StorageGetter: StorageGetter,</span></span><br><span class="line"><span class="undefined">          GetBSONP: GetBSONP</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;(); <span class="comment">//note: 直接调用执行</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">main</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 整个项目入口函数</span></span></span><br><span class="line"><span class="undefined">        readerModel = ReaderModel();</span></span><br><span class="line"><span class="undefined">        readerUI = ReaderBaseFrame(RootContainer);</span></span><br><span class="line"><span class="javascript">        readerModel.initPromise().then( <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">          readerUI(data)</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">        EventHandler();</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">ReaderMode</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">//实现阅读器相关的数据相互</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 1. 读取章节信息后加在对应章节数据。 2. 将数据传给ReaderBaseFrame() 进行渲染。</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//note:  使用ES6的promise，减少会回调函数的使用。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> Chapter_id;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> ChapterTotal;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 初始化，暴露函数，创建promise对象。</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> initPromise = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            getFictionInfoPromise().then(<span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> getCurChapterContentPromise();</span></span><br><span class="line"><span class="javascript">            &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">              resolve(data);</span></span><br><span class="line"><span class="undefined">            &#125;)</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 读取章节信息</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> getFictionInfoPromise = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            $.get(<span class="string">'/ajax/chapter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span>(data.result == <span class="number">0</span>) &#123; <span class="comment">//此处有省略，只显示基本结构</span></span></span><br><span class="line"><span class="undefined">                    resolve();</span></span><br><span class="line"><span class="javascript">                 &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="undefined">                    reject();</span></span><br><span class="line"><span class="undefined">                &#125; </span></span><br><span class="line"><span class="javascript">              &#125;, <span class="string">'json'</span>);</span></span><br><span class="line"><span class="undefined">            &#125;);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">       <span class="comment">// 读取对应章节数据</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> getCurChapterContentPromise = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </span></span><br><span class="line"><span class="javascript">              <span class="comment">// get data</span></span></span><br><span class="line"><span class="undefined">          &#125;);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对于阅读器中前一章，后一章数据处理。</span></span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 暴露函数</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">         </span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">         </span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">ReaderBaseFrame</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 渲染基本的UI结构</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">parseChapterData</span> (<span class="params">jsonData</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">// 向Dom中添加章节数据</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">          container.html(parseChapterData(data));</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">EventHandler</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 交互事件绑定</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 对于页面中各种可操作按钮进行绑定，包括返回，前后一章，面板（字体，背景色，夜间／白天模式），屏幕滚动等</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 屏幕滚动</span></span></span><br><span class="line"><span class="javascript">        $(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">          Dom.top_nav.hide();</span></span><br><span class="line"><span class="undefined">          Dom.bottom_nav.hide();</span></span><br><span class="line"><span class="undefined">          Dom.font_container.hide();</span></span><br><span class="line"><span class="javascript">            Dom.font_button.removeClass(<span class="string">'active-icon'</span>);</span></span><br><span class="line"><span class="undefined">        &#125;); </span></span><br><span class="line"><span class="javascript">        <span class="comment">// 字体放大</span></span></span><br><span class="line"><span class="javascript">        $(<span class="string">'#large_font'</span>).click( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">if</span>(initFontSize &gt; <span class="number">20</span>) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span>;</span></span><br><span class="line"><span class="undefined">          &#125;</span></span><br><span class="line"><span class="undefined">          initFontSize += 1;</span></span><br><span class="line"><span class="javascript">          RootContainer.css(<span class="string">'font-size'</span>, initFontSize);</span></span><br><span class="line"><span class="javascript">          Util.StorageSetter(<span class="string">'font_size'</span>, initFontSize);</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 其他事件略</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="javascript">    <span class="comment">// 主函数调用</span></span></span><br><span class="line"><span class="undefined">    main();</span></span><br><span class="line"><span class="undefined">&#125;)();</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h4><ul>
+<li><p>touch与click</p>
+<ul>
+<li>对于移动端在Android 4.0 之前click 存在300ms的延迟。即现触发touchstart - touchmove - touchend - touchcancel 在触发click。</li>
+<li>对于Android 4.0  之后版本，click与touch相同。但click能使页面兼容PC端。</li>
+</ul>
+</li>
+<li><p>json数据请求和jsonp数据解密</p>
+<p>​</p>
+</li>
+</ul>
+<p>## </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/29/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -435,7 +666,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
