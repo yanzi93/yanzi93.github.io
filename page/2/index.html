@@ -259,6 +259,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/js-队列栈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/23/js-队列栈/" itemprop="url">javascript中的队列和栈</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-23T14:14:57+08:00">
+                2018-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">javaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/23/js-队列栈/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/23/js-队列栈/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>队列是一种特殊的线性结构，只允许在队列的首部进行删除操作（出队），而在队列的尾部进行插入操作（入队）。符合<strong>先进先出（First In First Out，FIFO）原则</strong>。</p>
+<p>在javascript中，使用<code>array.push()</code>和<code>array.shift()</code>可以模仿队列的入队和出队。</p>
+<p><code>array.push()</code>：向数组的末端添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> len = arr.push(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(len) <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
+<p><code>array.shift()</code>：从数组中移除第一项并返回移除项。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.shift()); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[2,3]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>小游戏：揭秘数字</li>
+</ul>
+<p>规则:首先将第 1 个数删除，紧接着将第 2 个数放到 这串数的 尾，再将第 3 个数删除并将第 4 个数放到这串数的 尾，再将第 5 个数删除…… 直到剩下最后一个数，将最后一个数也删除。按照刚才删除的顺序，把这些删除的数连在一起就是需要的数字。数组：“6 3 1 7 5 8 9 2 4” </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr =[<span class="number">6</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">var</span> qq = [];</span><br><span class="line"><span class="keyword">while</span>(arr.length&gt;<span class="number">1</span>) &#123;</span><br><span class="line">    qq.push(arr.shift());</span><br><span class="line">    arr.push(arr.shift());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (arr.length == <span class="number">1</span>) &#123;</span><br><span class="line">    qq.push(arr[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(qq); <span class="comment">// [6, 1, 5, 9, 4, 7, 2, 8, 3]</span></span><br></pre></td></tr></table></figure>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈是一种<strong>后进后出（Last In First Out，LIFO）</strong>的数据结构。栈限定了只能在一端（栈的顶部）进行插入和删除的操作。</p>
+<p>在javascript中，使用<code>array.push()</code>和<code>array.pop()</code>可以模仿队列的入队和出队。</p>
+<p><code>array.push()</code>：向数组的末端添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
+<p><code>array.pop()</code>：从数组中移除末项并返回移除项。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.pop()); <span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[1,2]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>小游戏：验证回文</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'ahaha'</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'001100'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'我爱你爱我'</span>));<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'&#123;([/])&#125;'</span>));<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'AbcBa'</span>));<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'aahaaa'</span>));<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkPalindrome</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">    arr = str.split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">var</span> mid = arr.length/<span class="number">2</span><span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i= <span class="number">0</span>; i&lt;=mid; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr.shift() != arr.pop()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>小游戏：验证括号匹配</li>
+</ul>
+<p>思路： 利用栈的后进后出规则，但遇到左括号末端添加，遇到匹配右括号末端推出。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">'(1+2)*9/&#123;(3+5)/3*24&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(symbolMatch(str)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(symbolMatch(<span class="string">'(1+2)*9/&#123;(3+5)/3*24(&#125;)'</span>)); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">symbolMatch</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> arr = str.split(<span class="string">''</span>);</span><br><span class="line">	<span class="keyword">var</span> sym = [];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>,len=arr.length; i&lt;len;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> ( arr[i]==<span class="string">'&#123;'</span> || arr[i]==<span class="string">'['</span> || arr[i]==<span class="string">'('</span>) &#123;</span><br><span class="line">			sym.push(arr[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ( (arr[i]==<span class="string">'&#125;'</span>&amp;&amp;sym.pop()!=<span class="string">'&#123;'</span>)||(arr[i]==<span class="string">']'</span>&amp;&amp;sym.pop()!=<span class="string">'['</span>)||(arr[i]==<span class="string">')'</span>&amp;&amp;sym.pop()!=<span class="string">'('</span>) ) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (sym) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>纸牌游戏</li>
+</ul>
+<p>规则：将一副扑克牌平均分成两份，每人拿一份。一人先拿出手中的 第一张扑克牌放在桌上，然后另一人也拿出手中的第一张扑克牌，并放在刚打出的扑克牌 的上面，就像这样两人交替出牌。出牌时，如果某人打出的牌与桌上某张牌的牌面相同，即可将两张相同的牌及其中间所夹的牌全部取走，并依次放到自己手中牌的 尾。当任意一人手中的牌全部出完时，游戏结束，获胜。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>];</span><br><span class="line"><span class="built_in">console</span>.log(Poker(arr1,arr2)); <span class="comment">//arr2 win</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Poker</span> (<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">var</span> k =<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (arr1.length&gt;<span class="number">0</span> &amp;&amp; arr2.length&gt;<span class="number">0</span>) &#123;</span><br><span class="line">        arr.push(arr1.shift());</span><br><span class="line">        <span class="keyword">var</span> len = find_sim(arr);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++) &#123;</span><br><span class="line">            arr1.push(arr.pop());</span><br><span class="line">        &#125;	</span><br><span class="line">        arr.push(arr2.shift());</span><br><span class="line">        <span class="keyword">var</span> len = find_sim(arr);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++) &#123;</span><br><span class="line">            arr2.push(arr.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        k++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr1) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'arr2 win'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'arr1 win'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">find_sim</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> len = arr.length; </span><br><span class="line">        <span class="keyword">var</span> count = len<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(count&gt;=<span class="number">0</span>) &#123;</span><br><span class="line">            count--;</span><br><span class="line">            <span class="keyword">if</span> (arr[count] == arr[len<span class="number">-1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> len-count;</span><br><span class="line">            &#125;		</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="javascript中插入删除数组总结："><a href="#javascript中插入删除数组总结：" class="headerlink" title="javascript中插入删除数组总结："></a>javascript中插入删除数组总结：</h2><p><code>array.pop()</code>：从数组中移除末项并返回移除项。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.pop()); <span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[1,2]</span></span><br></pre></td></tr></table></figure>
+<p><code>array.push()</code>：向数组的末端添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> len = arr.push(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(len) <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
+<p><code>array.shift()</code>：从数组中移除第一项并返回移除项。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.shift()); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[2,3]</span></span><br></pre></td></tr></table></figure>
+<p><code>array.unshift()</code>：向数组的第一项添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> len = arr.unshift(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(len) <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[4,5,1,2,3]</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/regexp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2510,196 +2700,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/sortJs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Swallow Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/08/sortJs/" itemprop="url">排序方法（归并排序，冒泡排序，快速排序)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T13:28:45+08:00">
-                2018-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/08/sortJs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/08/sortJs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="排序方法（归并排序，冒泡排序，快速排序）"><a href="#排序方法（归并排序，冒泡排序，快速排序）" class="headerlink" title="排序方法（归并排序，冒泡排序，快速排序）"></a>排序方法（归并排序，冒泡排序，快速排序）</h1><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序是建立在归并操作上的一种有效的排序<a href="http://lib.csdn.net/base/datastructure" target="_blank" rel="noopener">算法</a>。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
-<p>归并排序，首先归是讲数组以长度中点进行拆分，直到拆分到单个元素。然后进行并，也就是将元素排序合并。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// method 1   </span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">		  <span class="keyword">var</span> tmp = [];</span><br><span class="line"></span><br><span class="line">		  <span class="keyword">while</span> (left.length &amp;&amp; right.length) &#123;</span><br><span class="line">			    <span class="keyword">if</span> (left[<span class="number">0</span>] &lt; right[<span class="number">0</span>])</span><br><span class="line">			      tmp.push(left.shift());</span><br><span class="line">			    <span class="keyword">else</span></span><br><span class="line">			      tmp.push(right.shift());</span><br><span class="line">		  &#125;</span><br><span class="line">		  <span class="keyword">return</span> tmp.concat(left, right);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	    <span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">	        <span class="keyword">if</span> (a.length === <span class="number">1</span>) </span><br><span class="line">	        <span class="keyword">return</span> a;</span><br><span class="line">	        <span class="keyword">var</span> mid = <span class="built_in">Math</span>.floor(a.length / <span class="number">2</span>)</span><br><span class="line">	         , left = a.slice(<span class="number">0</span>, mid)</span><br><span class="line">	         , right = a.slice(mid);</span><br><span class="line">	        <span class="keyword">return</span> merge(mergeSort(left), mergeSort(right));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// method 2 </span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">var</span> result = [];</span><br><span class="line">		    <span class="keyword">while</span> (left.length &amp;&amp; right.length) &#123;</span><br><span class="line">			    <span class="keyword">if</span> (left[<span class="number">0</span>] &lt; right[<span class="number">0</span>]) &#123;</span><br><span class="line">				    result.push(left.shift());</span><br><span class="line">			    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			      result.push(right.shift());</span><br><span class="line">			    &#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> result.concat(left, right);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (a.length === <span class="number">1</span>) &#123;</span><br><span class="line">			    <span class="keyword">return</span> a;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> work = [];</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = a.length; i &lt; len; i++) &#123;</span><br><span class="line">				work.push([a[i]]);</span><br><span class="line">			&#125;</span><br><span class="line">			work.push([]); <span class="comment">// 如果数组长度为奇数</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">var</span> lim = len; lim &gt; <span class="number">1</span>; lim = ~~((lim + <span class="number">1</span>) / <span class="number">2</span>)) &#123;</span><br><span class="line">			    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, k = <span class="number">0</span>; k &lt; lim; j++, k += <span class="number">2</span>)  &#123;</span><br><span class="line">			    	work[j] = merge(work[k], work[k + <span class="number">1</span>]);</span><br><span class="line">			    &#125;</span><br><span class="line">			    work[j] = []; <span class="comment">// 如果数组长度为奇数</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		    <span class="keyword">return</span> work[<span class="number">0</span>];</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>交换排序的一种。</p>
-<p>快速排序就是在数组中选一个数为基数，比基数小的数放在左边，比基数大的数放在基数右边。在选择一个基数进行同样操作，直到排序完成。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>)</span>&#123;  </span><br><span class="line">        <span class="keyword">if</span>(arr.length&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> arr;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">var</span> num=<span class="built_in">Math</span>.floor(arr.length/<span class="number">2</span>);<span class="comment">//找到中间数的索引值，如果是浮点数，则向下取整  </span></span><br><span class="line">        <span class="keyword">var</span> newValue=arr.splice(num,<span class="number">1</span>);<span class="comment">//找到中间数的值  </span></span><br><span class="line">        <span class="keyword">var</span> left=[],right=[];  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;  </span><br><span class="line">            <span class="keyword">if</span>(arr[i]&lt;newValue)&#123;  </span><br><span class="line">                left.push(arr[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">                right.push(arr[i]);</span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        debugge</span><br><span class="line">        <span class="keyword">return</span> quickSort(left).concat(newValue,quickSort(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>交换排序的一种</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">			l=arr.length</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;l<span class="number">-1</span>; i++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> j = i; j&lt;l; j++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(arr[i] &gt; arr[j]) &#123;</span><br><span class="line">						<span class="keyword">var</span> temp = arr[i];</span><br><span class="line">						arr[i] = arr[j];</span><br><span class="line">						arr[j] = temp;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="四种排序的比较"><a href="#四种排序的比较" class="headerlink" title="四种排序的比较"></a>四种排序的比较</h2><table>
-<thead>
-<tr>
-<th>排序方法</th>
-<th>时间复杂度</th>
-<th>最好时间复杂度</th>
-<th>最坏时间复杂度</th>
-<th>空间复杂度</th>
-<th>稳定性</th>
-<th>复杂性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>堆排序</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(1)$</td>
-<td>不稳定</td>
-<td>较复杂</td>
-</tr>
-<tr>
-<td>递归排序</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(n)$</td>
-<td>稳定</td>
-<td>较复杂</td>
-</tr>
-<tr>
-<td>冒泡排序</td>
-<td>$O(n^2)$</td>
-<td>$O(n)$</td>
-<td>$O(n^2)$</td>
-<td>$O(1)$</td>
-<td>稳定</td>
-<td>简单</td>
-</tr>
-<tr>
-<td>快速排序</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(nlog_2n)$</td>
-<td>$O(n^2)$</td>
-<td>$O(nlog_2n)$</td>
-<td>不稳定</td>
-<td>较复杂</td>
-</tr>
-</tbody>
-</table>
-<h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，ri=rj，且ri在rj之前，而在排序后的序列中，ri仍在rj之前，则称这种排序算法是稳定的；否则称为不稳定的。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2750,7 +2750,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

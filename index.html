@@ -513,6 +513,310 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/ES6-变量/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/21/ES6-变量/" itemprop="url">ES6中变量</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-21T10:47:49+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">javaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/21/ES6-变量/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/21/ES6-变量/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ES6扩展—变量"><a href="#ES6扩展—变量" class="headerlink" title="ES6扩展—变量"></a>ES6扩展—变量</h1><h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><p>ES6 新增了的声明变量方法。但是所声明的变量，<strong>只在<code>let</code>命令所在的代码块内有效。</strong></p>
+<h3 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h3><ol>
+<li>存在块级作用域</li>
+<li>未声明不得使用，不存在变量提升</li>
+<li>不允许在同一作用域下重复声明</li>
+<li>暂时性死区（TDZ,temporal dead zone）</li>
+<li>使用let声明变量不会挂载载window身上。（使用var声明变量挂载在window上）</li>
+</ol>
+<h4 id="与var区别"><a href="#与var区别" class="headerlink" title="与var区别"></a>与var区别</h4><ul>
+<li><p>let仅在代码块內有效，在代码块外使用js报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="keyword">var</span> a = <span class="number">1</span>; <span class="keyword">let</span> b = <span class="number">1</span>; &#125;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//Uncaught ReferenceError: b is not defined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>未声明不得使用，不存在变量提升。</p>
+<p>对于var声明变量，在声明前使用会提升为全局变量。</p>
+<p>对于let声明变量，在声明前使用会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//undefined 脚本运行之前就已经存在</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//Uncaught ReferenceError: b is not defined</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>; <span class="comment">//声明之前不存在let变量</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">//Uncaught ReferenceError: c is not defined</span></span><br></pre></td></tr></table></figure>
+<p>个人理解： 在预编译时，会对var，function在第一次读取时进行编译，然后在运行时进行赋值。</p>
+</li>
+<li><p>暂时性死区</p>
+<p>暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。</p>
+<ul>
+<li><p>在块作用域中，使用let声明的变量在let声明前不得使用，即使这个变量是一个全局变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">10</span>;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num); <span class="comment">//Uncaught ReferenceError: num is not defined</span></span><br><span class="line">    <span class="keyword">let</span> num;</span><br><span class="line">    <span class="built_in">console</span>.log(num); <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>导致使用typeof不会绝对安全</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(a)); <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(b)); <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">var</span> b =<span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(c)); <span class="comment">//ReferenceError</span></span><br><span class="line"><span class="keyword">let</span> c =<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>自相赋值报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x=x;</span><br><span class="line"><span class="keyword">let</span> y=y; <span class="comment">//ReferenceError</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>不允许在同一个作用域下重复声明</p>
+</li>
+</ul>
+<h4 id="let块级作用域"><a href="#let块级作用域" class="headerlink" title="let块级作用域"></a>let块级作用域</h4><ul>
+<li><p>外层变量不受内层变量影响</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(n); <span class="comment">// 5</span></span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> n = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(n); <span class="comment">// 10</span></span><br><span class="line">  &#125;</span><br><span class="line">f2()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ES6 允许块级作用域的任意嵌套。</p>
+</li>
+</ul>
+<ul>
+<li><p>块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了。</p>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IIFE 写法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;());</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 块级作用域写法</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码块內函数声明</p>
+<p>块级作用域内声明的函数类似于<code>let</code>，对作用域之外没有影响。</p>
+<p>  ES6 的块级作用域允许声明函数的规则，只在使用大括号的情况下成立，如果没有使用大括号，就会报错。</p>
+<p>  考虑到环境导致的行为差异太大，应该避免在块级作用域内声明函数。如果确实需要，也应该写成函数表达式，而不是函数声明语句。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在 ES6 浏览器中运行一下上面的代码，是会报错的.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  f(); <span class="comment">//// Uncaught TypeError: f is not a function</span></span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<p> 在 ES6 浏览器中运行一下上面的代码，是会报错的。原因是以上代码在ES6中相当于运行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> f = <span class="literal">undefined</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  f(); <span class="comment">//// Uncaught TypeError: f is not a function</span></span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<p>### </p>
+<h3 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h3><p>循环体以及需要重新赋值的变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun_var = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++) &#123;</span><br><span class="line">    fun_var[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fun_var[<span class="number">2</span>](); <span class="comment">//5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fun_var = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">        fun_var[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;)(i);</span><br><span class="line">&#125;</span><br><span class="line">fun_var[<span class="number">2</span>](); <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fun_let = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;<span class="number">5</span>;j++) &#123;</span><br><span class="line">    fun_let[j] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(j)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fun_let[<span class="number">2</span>](); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>在循环中，j使用let声明所以在每次循环代码块內有效。i使用var声明，所以不存在块作用域，i指向全局作用域。</p>
+<h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><h3 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h3><ol>
+<li>一旦声明，常量的值就不能改变。</li>
+<li>一旦声明变量，就必须立即初始化，不能留到以后赋值</li>
+<li><strong>定义Object，定义后仍可修改属性</strong></li>
+<li><code>const</code>的作用域与<code>let</code>命令相同：只在声明所在的块级作用域内有效。</li>
+<li><code>const</code>命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。</li>
+<li><code>const</code>声明的常量，也与<code>let</code>一样不可重复声明。</li>
+</ol>
+<p>声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="number">3.1415926</span>;</span><br><span class="line">PI = <span class="number">3</span>;  <span class="comment">//Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+<p>一旦声明变量，就必须立即初始化，不能留到以后赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PI;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Missing initializer in const declaration</span></span><br></pre></td></tr></table></figure>
+<p><strong>本质</strong>：const声明变量不能改变，实际上是对const声明变量保存的内容（基本数据类型为值，引用类型为地址引用）不得改动。</p>
+<ul>
+<li>对于基本数据类型值就保存在内存地址中，改变值就改变了内存地址，会报错。</li>
+<li>对于引用数据，变量中保存内存地址的引用，所以当内存地址中的内容发生改变，但是保存的内存引用不变时，不会报错且改变成功保存。</li>
+<li>如果想让一个引用数据类型具有常量的特性，使用<code>Object.freeze</code>,冻结后非严格模式下修改不起作用，严格模式报错。</li>
+</ul>
+<h3 id="应用：-1"><a href="#应用：-1" class="headerlink" title="应用："></a>应用：</h3><p>常量 ，配置项，引用的组件，中间变量等。</p>
+<h2 id="变量解构赋值"><a href="#变量解构赋值" class="headerlink" title="变量解构赋值"></a>变量解构赋值</h2><p>按照一定的模式，从数组和对象中提取值，对变量进行赋值，称为解构。</p>
+<h3 id="解构规则"><a href="#解构规则" class="headerlink" title="解构规则"></a>解构规则</h3><h4 id="数组解构赋值"><a href="#数组解构赋值" class="headerlink" title="数组解构赋值"></a>数组解构赋值</h4><ol>
+<li>按照对应顺序进行解构赋值。</li>
+<li>可以不完全解构，即只匹配一部分。</li>
+<li>可以嵌套解构。</li>
+<li>可以指定默认值，解构后当参数默认值严格等于undefined时，默认值才生效。</li>
+<li>默认值也可以为表达式，但是表达式为惰性请求，只有当undefined时才会求取。</li>
+<li>默认值可以解构赋值的其他变量，但是变量必须已声明。</li>
+<li>等号右边缺少数值活着解构不成功否会返回undefined。</li>
+<li>等号右边不是数组（或不可遍历结构）会报错。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b, c, d] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">// a=1,b=2,c=3,d=undedined</span></span><br><span class="line"><span class="keyword">let</span> [a, [[b], c]] = [<span class="number">1</span>, [[<span class="number">2</span>,<span class="number">3</span>], <span class="number">4</span>]];</span><br><span class="line"><span class="comment">// a=1,b=2,c=4</span></span><br><span class="line"><span class="keyword">let</span> [ , , c] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">//c=3</span></span><br><span class="line"><span class="keyword">let</span> [a, ...b] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">//a=1,b=[2,3]</span></span><br><span class="line"><span class="keyword">let</span> [a] = [];</span><br><span class="line"><span class="comment">//a=undefined</span></span><br><span class="line"><span class="keyword">let</span> [a=<span class="string">'true'</span>, b] = [, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// a='true',b=3</span></span><br><span class="line"><span class="keyword">let</span> [a=<span class="string">'true'</span>, b] = [<span class="literal">undefined</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// a='true',b=3</span></span><br><span class="line"><span class="keyword">let</span> [a=<span class="string">'true'</span>, b] = [<span class="number">1</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">//a=1,b=3</span></span><br><span class="line"><span class="keyword">let</span> [x=<span class="number">1</span>,y=x] = [<span class="number">2</span>];</span><br><span class="line"><span class="comment">//a2,b=2</span></span><br><span class="line"><span class="keyword">let</span> [x=y,y=<span class="number">1</span>] = [,<span class="number">3</span>]; <span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<p>报错：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JS报错</span></span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">NaN</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h4><ul>
+<li>解构规则</li>
+</ul>
+<p>数组解构按照数组元素的次序排序，对象解构则没有次序。</p>
+<p>对象解构按照的规则可以简单解释为，按照属性名相同进行解构，</p>
+<p><code>let { foo, bar } = { foo: &quot;aaa&quot;, bar: &quot;bbb&quot; };</code></p>
+<p>进行解构时，前面部分相当于按照下面进行</p>
+<p><code>let { foo: foo, bar: bar } = { foo: &quot;aaa&quot;, bar: &quot;bbb&quot; };</code></p>
+<p>属性名相同的，我们对值进行复制。</p>
+<p>简单说就是先找到同名属性，然后在付给对应变量。</p>
+<ul>
+<li>特点：</li>
+</ul>
+<ol>
+<li>按照解构规则，先找到同名属性，然后在付给对应变量。</li>
+<li>未找到等于undefined。</li>
+<li>可以嵌套解构。</li>
+<li>可以使用默认值。</li>
+<li>数组可以按照下标对象解构。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  p: [</span><br><span class="line">    <span class="string">'Hello'</span>,</span><br><span class="line">    &#123; <span class="attr">y</span>: <span class="string">'World'</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; p, <span class="attr">p</span>: [x, &#123; y &#125;] &#125; = obj;</span><br><span class="line"><span class="comment">//p=['Hello',&#123; y: 'World' &#125;]</span></span><br><span class="line"><span class="comment">//x='Hello'，y='World'</span></span><br><span class="line"><span class="keyword">const</span> node = &#123;</span><br><span class="line">  loc: &#123;</span><br><span class="line">    start: &#123;</span><br><span class="line">      line: <span class="number">1</span>,</span><br><span class="line">      column: <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; loc, <span class="attr">loc</span>: &#123; start &#125;, <span class="attr">loc</span>: &#123; <span class="attr">start</span>: &#123; line &#125;&#125; &#125; = node;</span><br><span class="line"><span class="comment">//start=&#123;line: 1, column: 5&#125;</span></span><br><span class="line"><span class="comment">//loc=&#123;start: Object&#125;，line=1</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="number">0</span> : first, [arr.length - <span class="number">1</span>] : last&#125; = arr;</span><br><span class="line"><span class="comment">//first= 1，last= 3</span></span><br></pre></td></tr></table></figure>
+<p>报错解构</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JS报错</span></span><br><span class="line"><span class="comment">//解构模式是嵌套的对象，而且子对象所在的父属性不存在，那么将会报错。</span></span><br><span class="line"><span class="keyword">let</span> &#123;foo&#125; = &#123;<span class="attr">bar</span>: <span class="string">'baz'</span>&#125;;</span><br><span class="line"><span class="comment">//将一个已经声明的变量用于解构赋值，必须非常小心</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;;<span class="comment">//理解成一个代码块，从而发生语法错误</span></span><br><span class="line"><span class="comment">//正确写法</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">(&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>应用：使用函数调用可更加方便</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;floor, random&#125; = <span class="built_in">Math</span>;</span><br><span class="line">floor(); <span class="comment">//Math.floor()</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符串，数组和布尔值的解构赋值"><a href="#字符串，数组和布尔值的解构赋值" class="headerlink" title="字符串，数组和布尔值的解构赋值"></a>字符串，数组和布尔值的解构赋值</h4><p>只要等号右边不是对象或数组，就先将其转换为对象。</p>
+<p>由于undefined，null无法转换为对象，所以对他们进行解构赋值会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b, c, d, e] = <span class="string">'hello'</span>;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">length</span> : len&#125; = <span class="string">'hello'</span>;<span class="comment">//5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;a&#125; = <span class="number">1</span>; <span class="comment">//报错</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">toString</span>:a&#125; = <span class="number">1</span>; </span><br><span class="line">a == <span class="built_in">Number</span>.prototype.toString; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h4 id="函数参数解构赋值"><a href="#函数参数解构赋值" class="headerlink" title="函数参数解构赋值"></a>函数参数解构赋值</h4><ol>
+<li>使用参数解构和直接传入参数无差别</li>
+<li>可以使用默认值</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]].map(<span class="function">(<span class="params">[a, b]</span>) =&gt;</span> a + b);</span><br><span class="line"><span class="comment">// [ 3, 7 ]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">&#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">8</span>&#125;); <span class="comment">// [3, 8]</span></span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>&#125;); <span class="comment">// [3, 0]</span></span><br><span class="line">move(&#123;&#125;); <span class="comment">// [0, 0]</span></span><br><span class="line">move(); <span class="comment">// [0, 0]</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="literal">undefined</span>, <span class="number">3</span>].map(<span class="function">(<span class="params">x = <span class="string">'yes'</span></span>) =&gt;</span> x);</span><br><span class="line"><span class="comment">// [ 1, 'yes', 3 ]</span></span><br></pre></td></tr></table></figure>
+<h4 id="模式解构中的圆括号"><a href="#模式解构中的圆括号" class="headerlink" title="模式解构中的圆括号"></a>模式解构中的圆括号</h4><p>在模式解构中使用圆括号，容易造成歧义。</p>
+<p>报错情况</p>
+<ol>
+<li>变量声明语句等号左边不能使用圆括号。<code>let [(a)] = [1];</code></li>
+<li>函数参数（属于变量声明）不能使用圆括号。<code>function f([(z)]) { return z; }</code></li>
+<li>赋值语句等号左边模式部分不能使用圆括号。<code>({ p: a }) = { p: 42 };</code></li>
+</ol>
+<p>可以使用圆括号情况</p>
+<ol>
+<li>赋值语句等号左边非模式部分可以使用。<code>({ p: (d) } = {});</code></li>
+</ol>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ol>
+<li><p>交换变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="number">2</span>;</span><br><span class="line">[x, y] = [y, x];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数返回值</p>
+</li>
+<li><p>函数参数定义</p>
+</li>
+<li><p>提取JSON数据</p>
+</li>
+<li><p>函数参数默认值</p>
+</li>
+<li><p>遍历Map解构</p>
+</li>
+<li><p>输入模块的指定方法</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/ES6-数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2559,196 +2863,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/js-队列栈/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Swallow Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/23/js-队列栈/" itemprop="url">javascript中的队列和栈</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-23T14:14:57+08:00">
-                2018-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">javaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/23/js-队列栈/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/23/js-队列栈/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>队列是一种特殊的线性结构，只允许在队列的首部进行删除操作（出队），而在队列的尾部进行插入操作（入队）。符合<strong>先进先出（First In First Out，FIFO）原则</strong>。</p>
-<p>在javascript中，使用<code>array.push()</code>和<code>array.shift()</code>可以模仿队列的入队和出队。</p>
-<p><code>array.push()</code>：向数组的末端添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> len = arr.push(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(len) <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
-<p><code>array.shift()</code>：从数组中移除第一项并返回移除项。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.shift()); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[2,3]</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>小游戏：揭秘数字</li>
-</ul>
-<p>规则:首先将第 1 个数删除，紧接着将第 2 个数放到 这串数的 尾，再将第 3 个数删除并将第 4 个数放到这串数的 尾，再将第 5 个数删除…… 直到剩下最后一个数，将最后一个数也删除。按照刚才删除的顺序，把这些删除的数连在一起就是需要的数字。数组：“6 3 1 7 5 8 9 2 4” </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr =[<span class="number">6</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">var</span> qq = [];</span><br><span class="line"><span class="keyword">while</span>(arr.length&gt;<span class="number">1</span>) &#123;</span><br><span class="line">    qq.push(arr.shift());</span><br><span class="line">    arr.push(arr.shift());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (arr.length == <span class="number">1</span>) &#123;</span><br><span class="line">    qq.push(arr[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(qq); <span class="comment">// [6, 1, 5, 9, 4, 7, 2, 8, 3]</span></span><br></pre></td></tr></table></figure>
-<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈是一种<strong>后进后出（Last In First Out，LIFO）</strong>的数据结构。栈限定了只能在一端（栈的顶部）进行插入和删除的操作。</p>
-<p>在javascript中，使用<code>array.push()</code>和<code>array.pop()</code>可以模仿队列的入队和出队。</p>
-<p><code>array.push()</code>：向数组的末端添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
-<p><code>array.pop()</code>：从数组中移除末项并返回移除项。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.pop()); <span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[1,2]</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>小游戏：验证回文</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'ahaha'</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'001100'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'我爱你爱我'</span>));<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'&#123;([/])&#125;'</span>));<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'AbcBa'</span>));<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(checkPalindrome(<span class="string">'aahaaa'</span>));<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkPalindrome</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">    arr = str.split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">var</span> mid = arr.length/<span class="number">2</span><span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i= <span class="number">0</span>; i&lt;=mid; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr.shift() != arr.pop()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>小游戏：验证括号匹配</li>
-</ul>
-<p>思路： 利用栈的后进后出规则，但遇到左括号末端添加，遇到匹配右括号末端推出。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">'(1+2)*9/&#123;(3+5)/3*24&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(symbolMatch(str)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(symbolMatch(<span class="string">'(1+2)*9/&#123;(3+5)/3*24(&#125;)'</span>)); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">symbolMatch</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> arr = str.split(<span class="string">''</span>);</span><br><span class="line">	<span class="keyword">var</span> sym = [];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>,len=arr.length; i&lt;len;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> ( arr[i]==<span class="string">'&#123;'</span> || arr[i]==<span class="string">'['</span> || arr[i]==<span class="string">'('</span>) &#123;</span><br><span class="line">			sym.push(arr[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ( (arr[i]==<span class="string">'&#125;'</span>&amp;&amp;sym.pop()!=<span class="string">'&#123;'</span>)||(arr[i]==<span class="string">']'</span>&amp;&amp;sym.pop()!=<span class="string">'['</span>)||(arr[i]==<span class="string">')'</span>&amp;&amp;sym.pop()!=<span class="string">'('</span>) ) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (sym) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>纸牌游戏</li>
-</ul>
-<p>规则：将一副扑克牌平均分成两份，每人拿一份。一人先拿出手中的 第一张扑克牌放在桌上，然后另一人也拿出手中的第一张扑克牌，并放在刚打出的扑克牌 的上面，就像这样两人交替出牌。出牌时，如果某人打出的牌与桌上某张牌的牌面相同，即可将两张相同的牌及其中间所夹的牌全部取走，并依次放到自己手中牌的 尾。当任意一人手中的牌全部出完时，游戏结束，获胜。 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>];</span><br><span class="line"><span class="built_in">console</span>.log(Poker(arr1,arr2)); <span class="comment">//arr2 win</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Poker</span> (<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">var</span> k =<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (arr1.length&gt;<span class="number">0</span> &amp;&amp; arr2.length&gt;<span class="number">0</span>) &#123;</span><br><span class="line">        arr.push(arr1.shift());</span><br><span class="line">        <span class="keyword">var</span> len = find_sim(arr);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++) &#123;</span><br><span class="line">            arr1.push(arr.pop());</span><br><span class="line">        &#125;	</span><br><span class="line">        arr.push(arr2.shift());</span><br><span class="line">        <span class="keyword">var</span> len = find_sim(arr);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++) &#123;</span><br><span class="line">            arr2.push(arr.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        k++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr1) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'arr2 win'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'arr1 win'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">find_sim</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> len = arr.length; </span><br><span class="line">        <span class="keyword">var</span> count = len<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(count&gt;=<span class="number">0</span>) &#123;</span><br><span class="line">            count--;</span><br><span class="line">            <span class="keyword">if</span> (arr[count] == arr[len<span class="number">-1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> len-count;</span><br><span class="line">            &#125;		</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="javascript中插入删除数组总结："><a href="#javascript中插入删除数组总结：" class="headerlink" title="javascript中插入删除数组总结："></a>javascript中插入删除数组总结：</h2><p><code>array.pop()</code>：从数组中移除末项并返回移除项。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.pop()); <span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[1,2]</span></span><br></pre></td></tr></table></figure>
-<p><code>array.push()</code>：向数组的末端添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> len = arr.push(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(len) <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
-<p><code>array.shift()</code>：从数组中移除第一项并返回移除项。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.shift()); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[2,3]</span></span><br></pre></td></tr></table></figure>
-<p><code>array.unshift()</code>：向数组的第一项添加项，返回数组添加后的长度。可以同时添加多项，用逗号隔开。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> len = arr.unshift(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(len) <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[4,5,1,2,3]</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2799,7 +2913,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
