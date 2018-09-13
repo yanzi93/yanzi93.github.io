@@ -259,6 +259,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/进制转换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/13/进制转换/" itemprop="url">进制转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T13:27:02+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/13/进制转换/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/13/进制转换/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="二进制、十进制、十六进制数字的互转"><a href="#二进制、十进制、十六进制数字的互转" class="headerlink" title="二进制、十进制、十六进制数字的互转"></a>二进制、十进制、十六进制数字的互转</h4><p>计算：</p>
+<ul>
+<li><p>二／八／十六  =&gt; 十进制</p>
+<p>从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和</p>
+</li>
+<li><p>十进制 =&gt; 二／八／十六</p>
+<p>十进制数字除以2/8/16记录余数，商继续除以2/8/16，直到除数小于2/8/16，余数依次组合最先得到余数是低位。</p>
+</li>
+<li><p>二进制 =&gt;  八／十六</p>
+<p>八进制：</p>
+<p>取三合一法，即从二进制的小数点为分界点，向左（向右）每三位取成一位，接着将这三位二进制按权相加，然后，按顺序进行排列，小数点的位置不变，得到的数字就是我们所求的八进制数。如果向左（向右）取三位后，取到最高（最低）位时候，如果无法凑足三位，可以在小数点最左边（最右边），即整数的最高位（最低位）添0，凑足三位。</p>
+<p>十六进制：</p>
+<p>方法：取四合一法，即从二进制的小数点为分界点，向左（向右）每四位取成一位，接着将这四位二进制按权相加，然后，按顺序进行排列，小数点的位置不变，得到的数字就是我们所求的十六进制数。如果向左（向右）取四位后，取到最高（最低）位时候，如果无法凑足四位，可以在小数点最左边（最右边），即整数的最高位（最低位）添0，凑足四位。</p>
+</li>
+</ul>
+<p>js方法：</p>
+<ul>
+<li><p>十进制转其他  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let n = 10;</span><br><span class="line">n.toString(2); //&quot;1010&quot;</span><br><span class="line">n.toString(8); //&quot;12&quot;</span><br><span class="line">n.toString(16); //&quot;a&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他转十进制 var x=’110’;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n = <span class="string">'110'</span>;</span><br><span class="line"><span class="built_in">parseInt</span>(n,<span class="number">10</span>); <span class="comment">//110</span></span><br><span class="line"><span class="built_in">parseInt</span>(n,<span class="number">8</span>); <span class="comment">//72</span></span><br><span class="line"><span class="built_in">parseInt</span>(n,<span class="number">16</span>); <span class="comment">//272</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>#### </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/ES6-array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -930,260 +1085,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/ES6-函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Swallow Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/21/ES6-函数/" itemprop="url">ES6中函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-21T10:47:49+08:00">
-                2018-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">javaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/21/ES6-函数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/21/ES6-函数/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ES6扩展—函数"><a href="#ES6扩展—函数" class="headerlink" title="ES6扩展—函数"></a>ES6扩展—函数</h1><h2 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ul>
-<li><p>在ES6中允许直接为函数参数设置默认值。</p>
-<blockquote>
-<p>在ES5中不能直接为函数参数指定默认值，必须使用<code>||</code>运算进行赋值，并且传入参数是false需要特别判断。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">x,y=<span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x,y);</span><br><span class="line">&#125;</span><br><span class="line">fun(<span class="number">2</span>,<span class="number">3</span>); <span class="comment">//2 3</span></span><br><span class="line">fun(<span class="number">2</span>); <span class="comment">//2 2</span></span><br><span class="line">fun(); <span class="comment">//undefined 2</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>参数变量是默认声明，不能使用let或const再次声明。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">x,y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">2</span>; <span class="comment">//Uncaught SyntaxError: Identifier 'x' has already been declared</span></span><br><span class="line">    <span class="keyword">var</span> y=<span class="number">4</span>; <span class="comment">//var不报错</span></span><br><span class="line">&#125;</span><br><span class="line">fun(<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用默认参数时，函数不能有同名参数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, x, y</span>) </span>&#123; &#125;</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, x, y = <span class="number">1</span></span>) </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>参数默认值是<strong>惰性求值</strong>，只有在使用时进行计算。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">99</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">p = x + <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(p);</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// 100</span></span><br><span class="line">x = <span class="number">100</span>;</span><br><span class="line">foo() <span class="comment">// 101</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以和解构赋值默认结合使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123;x, y = <span class="number">5</span>&#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo() <span class="comment">// undefined 5</span></span><br></pre></td></tr></table></figure>
-<p>注意：{}很重要，当没有传入参数时，默认解析{}</p>
-</li>
-<li><p>参数默认值的位置应该是尾参数</p>
-<p>非为参数设置默认值，实际上无法省略。因为后面参数不能跳过该参数赋值。除非显示声明该参数是undefined。</p>
-</li>
-<li><p>函数的length属性</p>
-<p>指定默认值后，函数的length属性将不计算该参数。</p>
-</li>
-<li><p>函数参数作用域问题</p>
-<p>当参数设置默认值后，函数进行声明初始化会形成一个单独作用域，函数初始化结束后作用域消失。不设置参数默认值不会出现。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, y = function(</span>) </span>&#123; x = <span class="number">2</span>; &#125;) &#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line">  y();</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// 3</span></span><br><span class="line">x <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
-<li>利用参数默认值，可以指定某一个参数不得省略，省略就会抛出错误。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throwIfMissing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Missing parameter'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">mustBeProvided = throwIfMissing(</span>)) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> mustBeProvided;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置参数默认值为undefined表示参数可以省略。</li>
-</ul>
-<h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>ES6引入rest参数，形式为<code>…变量名</code>，用于获取函数的多余参数。但是rest参数必须置于函数参数最后一个，后面不能在跟参数（否则报错）。</p>
-<p>优点</p>
-<ul>
-<li><p>可以向函数传入任意数目的参数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>arguments是类数组非数组，不能直接使用数组的方法需要使用<code>Array.prototype.slice.call</code>先将其转换为数组。rest参数不參在转换，就是一个数组。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// rest参数的写法</span></span><br><span class="line"><span class="keyword">const</span> sortNumbers = <span class="function">(<span class="params">...numbers</span>) =&gt;</span> numbers.sort();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用函数length属性，不包括rest参数。</p>
-</li>
-</ul>
-<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p>从ES5开始，函数内部可以设定为严格模式。必须显示声明。</p>
-<p>ES6直有函数使用了默认值，解构赋值，扩展运算符，那么函数内部就不能显示设定为严格模式，否则报错。</p>
-<p>原因：严格模式设定后包括函数参数和函数内部。函数先执行参数在执行函数内部，如果显示声明严格模式，则函数参数执行时还未声明。</p>
-<p>解决办法：方法一：全局声明严格模式；方法二：把带默认参数函数包含在一个无参数的立即执行函数里面。</p>
-<h2 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a>name属性</h2><p>返回该函数的函数名。</p>
-<p>ES5匿名匿名函数函数表达式返回空字符串。ES6匿名函数函数表达式返回函数实际函数名。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line">f.name <span class="comment">// ""</span></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">f.name <span class="comment">// "f"</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>Function</code>构造函数返回的函数实例，<code>name</code>属性的值为<code>anonymous</code>。</li>
-</ul>
-<p><code>(new Function).name // &quot;anonymous&quot;</code></p>
-<ul>
-<li><code>bind</code>返回的函数，<code>name</code>属性值会加上<code>bound</code>前缀。</li>
-</ul>
-<p><code>(Math.sin.bind()).name; //&quot;bound sin&quot;</code></p>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h3><ul>
-<li><p>参数部分使用圆括号</p>
-</li>
-<li><p>代码块部分使用大括号扩起来，并使用return返回。</p>
-<ul>
-<li><p>仅有一条语句可省略大括号，省略return也会返回该语句。</p>
-</li>
-<li><p>返回为对象且仅一句，大括号不能省略</p>
-</li>
-<li><p>仅一条语句，并且不让该语句返回则使用</p>
-<p><code>let fn = () =&gt; void doesNotReturn();</code></p>
-</li>
-</ul>
-</li>
-<li><p>可以和变量解构结合使用</p>
-</li>
-<li><p>简化回调函数</p>
-<p><code>[1,2,3].map(x =&gt; x * x);</code></p>
-<p><code>var result = values.sort((a, b) =&gt; a - b);</code></p>
-<p><code>const headAndTail = (head, ...tail) =&gt; [head, tail];</code></p>
-</li>
-</ul>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li>函数体内部的this，时定义时所在的对象，而非使用时所在的对象。<ol>
-<li><strong>箭头函数可以让setTimeout里面的this绑定定义时所在的作用域，而不是运行时所在的作用域。</strong></li>
-<li>箭头函数让this指向固定化。原因是：箭头函数内部没有this，所以只能指向外层代码块的this。</li>
-<li><strong>箭头函数内部没有this，arguments，super，new.target。</strong>指向外层函数对应变量。不能使用call，applay，bind。</li>
-</ol>
-</li>
-<li>不可以当作构造函数使用。</li>
-<li>不可以使用arguments对象，可以使用rest代替。</li>
-<li>不可以使用yield命令，因为尖头函数不能作Generator函数。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面是一个部署管道机制（pipeline）的例子，即前一个函数的输出是后一个函数的输入。</span></span><br><span class="line"><span class="keyword">const</span> pipeline = <span class="function">(<span class="params">...funcs</span>) =&gt;</span></span><br><span class="line">  val =&gt; funcs.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> b(a), val);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> plus1 = <span class="function"><span class="params">a</span> =&gt;</span> a + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> mult2 = <span class="function"><span class="params">a</span> =&gt;</span> a * <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> addThenMult = pipeline(plus1, mult2);</span><br><span class="line"></span><br><span class="line">addThenMult(<span class="number">5</span>)</span><br><span class="line"><span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
-<h1 id="双冒号运算符"><a href="#双冒号运算符" class="headerlink" title="双冒号运算符"></a>双冒号运算符</h1><p>双冒号的提出是为了用来取代call，apply，bind调用。</p>
-<p>双冒号绑定绑定运算符<code>::</code>，双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象作为上下文执行环境（即this对象），绑定到右边的函数上面。</p>
-<h1 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h1><p>尾调用（Tail Call）是函数式编程概念。指某个函数的最后一步是调用另一个函数。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/ES6-变量/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1440,6 +1341,260 @@
 <li><p>输入模块的指定方法</p>
 </li>
 </ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/ES6-函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/21/ES6-函数/" itemprop="url">ES6中函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-21T10:47:49+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">javaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/21/ES6-函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/21/ES6-函数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ES6扩展—函数"><a href="#ES6扩展—函数" class="headerlink" title="ES6扩展—函数"></a>ES6扩展—函数</h1><h2 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ul>
+<li><p>在ES6中允许直接为函数参数设置默认值。</p>
+<blockquote>
+<p>在ES5中不能直接为函数参数指定默认值，必须使用<code>||</code>运算进行赋值，并且传入参数是false需要特别判断。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">x,y=<span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x,y);</span><br><span class="line">&#125;</span><br><span class="line">fun(<span class="number">2</span>,<span class="number">3</span>); <span class="comment">//2 3</span></span><br><span class="line">fun(<span class="number">2</span>); <span class="comment">//2 2</span></span><br><span class="line">fun(); <span class="comment">//undefined 2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参数变量是默认声明，不能使用let或const再次声明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">x,y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">2</span>; <span class="comment">//Uncaught SyntaxError: Identifier 'x' has already been declared</span></span><br><span class="line">    <span class="keyword">var</span> y=<span class="number">4</span>; <span class="comment">//var不报错</span></span><br><span class="line">&#125;</span><br><span class="line">fun(<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用默认参数时，函数不能有同名参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, x, y</span>) </span>&#123; &#125;</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, x, y = <span class="number">1</span></span>) </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参数默认值是<strong>惰性求值</strong>，只有在使用时进行计算。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">99</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">p = x + <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(p);</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// 100</span></span><br><span class="line">x = <span class="number">100</span>;</span><br><span class="line">foo() <span class="comment">// 101</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以和解构赋值默认结合使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123;x, y = <span class="number">5</span>&#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo() <span class="comment">// undefined 5</span></span><br></pre></td></tr></table></figure>
+<p>注意：{}很重要，当没有传入参数时，默认解析{}</p>
+</li>
+<li><p>参数默认值的位置应该是尾参数</p>
+<p>非为参数设置默认值，实际上无法省略。因为后面参数不能跳过该参数赋值。除非显示声明该参数是undefined。</p>
+</li>
+<li><p>函数的length属性</p>
+<p>指定默认值后，函数的length属性将不计算该参数。</p>
+</li>
+<li><p>函数参数作用域问题</p>
+<p>当参数设置默认值后，函数进行声明初始化会形成一个单独作用域，函数初始化结束后作用域消失。不设置参数默认值不会出现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, y = function(</span>) </span>&#123; x = <span class="number">2</span>; &#125;) &#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line">  y();</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// 3</span></span><br><span class="line">x <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
+<li>利用参数默认值，可以指定某一个参数不得省略，省略就会抛出错误。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throwIfMissing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Missing parameter'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">mustBeProvided = throwIfMissing(</span>)) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> mustBeProvided;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置参数默认值为undefined表示参数可以省略。</li>
+</ul>
+<h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>ES6引入rest参数，形式为<code>…变量名</code>，用于获取函数的多余参数。但是rest参数必须置于函数参数最后一个，后面不能在跟参数（否则报错）。</p>
+<p>优点</p>
+<ul>
+<li><p>可以向函数传入任意数目的参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>arguments是类数组非数组，不能直接使用数组的方法需要使用<code>Array.prototype.slice.call</code>先将其转换为数组。rest参数不參在转换，就是一个数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// rest参数的写法</span></span><br><span class="line"><span class="keyword">const</span> sortNumbers = <span class="function">(<span class="params">...numbers</span>) =&gt;</span> numbers.sort();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用函数length属性，不包括rest参数。</p>
+</li>
+</ul>
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p>从ES5开始，函数内部可以设定为严格模式。必须显示声明。</p>
+<p>ES6直有函数使用了默认值，解构赋值，扩展运算符，那么函数内部就不能显示设定为严格模式，否则报错。</p>
+<p>原因：严格模式设定后包括函数参数和函数内部。函数先执行参数在执行函数内部，如果显示声明严格模式，则函数参数执行时还未声明。</p>
+<p>解决办法：方法一：全局声明严格模式；方法二：把带默认参数函数包含在一个无参数的立即执行函数里面。</p>
+<h2 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a>name属性</h2><p>返回该函数的函数名。</p>
+<p>ES5匿名匿名函数函数表达式返回空字符串。ES6匿名函数函数表达式返回函数实际函数名。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line">f.name <span class="comment">// ""</span></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">f.name <span class="comment">// "f"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Function</code>构造函数返回的函数实例，<code>name</code>属性的值为<code>anonymous</code>。</li>
+</ul>
+<p><code>(new Function).name // &quot;anonymous&quot;</code></p>
+<ul>
+<li><code>bind</code>返回的函数，<code>name</code>属性值会加上<code>bound</code>前缀。</li>
+</ul>
+<p><code>(Math.sin.bind()).name; //&quot;bound sin&quot;</code></p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h3><ul>
+<li><p>参数部分使用圆括号</p>
+</li>
+<li><p>代码块部分使用大括号扩起来，并使用return返回。</p>
+<ul>
+<li><p>仅有一条语句可省略大括号，省略return也会返回该语句。</p>
+</li>
+<li><p>返回为对象且仅一句，大括号不能省略</p>
+</li>
+<li><p>仅一条语句，并且不让该语句返回则使用</p>
+<p><code>let fn = () =&gt; void doesNotReturn();</code></p>
+</li>
+</ul>
+</li>
+<li><p>可以和变量解构结合使用</p>
+</li>
+<li><p>简化回调函数</p>
+<p><code>[1,2,3].map(x =&gt; x * x);</code></p>
+<p><code>var result = values.sort((a, b) =&gt; a - b);</code></p>
+<p><code>const headAndTail = (head, ...tail) =&gt; [head, tail];</code></p>
+</li>
+</ul>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li>函数体内部的this，时定义时所在的对象，而非使用时所在的对象。<ol>
+<li><strong>箭头函数可以让setTimeout里面的this绑定定义时所在的作用域，而不是运行时所在的作用域。</strong></li>
+<li>箭头函数让this指向固定化。原因是：箭头函数内部没有this，所以只能指向外层代码块的this。</li>
+<li><strong>箭头函数内部没有this，arguments，super，new.target。</strong>指向外层函数对应变量。不能使用call，applay，bind。</li>
+</ol>
+</li>
+<li>不可以当作构造函数使用。</li>
+<li>不可以使用arguments对象，可以使用rest代替。</li>
+<li>不可以使用yield命令，因为尖头函数不能作Generator函数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面是一个部署管道机制（pipeline）的例子，即前一个函数的输出是后一个函数的输入。</span></span><br><span class="line"><span class="keyword">const</span> pipeline = <span class="function">(<span class="params">...funcs</span>) =&gt;</span></span><br><span class="line">  val =&gt; funcs.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> b(a), val);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> plus1 = <span class="function"><span class="params">a</span> =&gt;</span> a + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> mult2 = <span class="function"><span class="params">a</span> =&gt;</span> a * <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> addThenMult = pipeline(plus1, mult2);</span><br><span class="line"></span><br><span class="line">addThenMult(<span class="number">5</span>)</span><br><span class="line"><span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+<h1 id="双冒号运算符"><a href="#双冒号运算符" class="headerlink" title="双冒号运算符"></a>双冒号运算符</h1><p>双冒号的提出是为了用来取代call，apply，bind调用。</p>
+<p>双冒号绑定绑定运算符<code>::</code>，双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象作为上下文执行环境（即this对象），绑定到右边的函数上面。</p>
+<h1 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h1><p>尾调用（Tail Call）是函数式编程概念。指某个函数的最后一步是调用另一个函数。</p>
 
           
         
@@ -2630,334 +2785,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/js-string/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Swallow Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/25/js-string/" itemprop="url">Number,String,Boolean</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T15:08:44+08:00">
-                2018-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">javaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/25/js-string/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/25/js-string/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当操作string，number，boolean基本类型的数据，按照基本类型的相应行为，它们不具有方法。但是它可以具有类似引用类型的特殊行为。原因在于当读取一个基本类型是，后台会常见一个对应的基本包装类型对象，从而使其具有方法。</p>
-<p>当使用基本类型（boolean，number，sring）的特殊行为时，后台进行如下处理：</p>
-<ol>
-<li>创建相应基本类型的实例</li>
-<li>在实例上指定方法</li>
-<li>销毁这个实例</li>
-</ol>
-<p>与引用类型区别：</p>
-<ul>
-<li><p>对象生存期不同。</p>
-<p>引用类型实例在真个作用域销毁之前一直存在在内存中。</p>
-<p>自动创建基本包装类型对象，只存在于代码执行瞬间，然后立即被销毁。</p>
-<p>（因此项字符串添加属性不会报错，但是也不会被保存）</p>
-</li>
-</ul>
-<h1 id="显示创建基本包装类型的对象"><a href="#显示创建基本包装类型的对象" class="headerlink" title="显示创建基本包装类型的对象"></a>显示创建基本包装类型的对象</h1><p>不推荐</p>
-<p>可以使用new显示的创建String，Boolean，Number的对象，但是不推荐，因为使用这种方式创建的类型属于object。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="string">'abc'</span>;</span><br><span class="line"><span class="keyword">var</span> n2 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'abc'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(n1, <span class="keyword">typeof</span>(n1)); <span class="comment">//abc string</span></span><br><span class="line"><span class="built_in">console</span>.log(n2, <span class="keyword">typeof</span>(n2)); <span class="comment">//String &#123;"abc"&#125; object</span></span><br></pre></td></tr></table></figure>
-<h2 id="Boolean类型"><a href="#Boolean类型" class="headerlink" title="Boolean类型"></a>Boolean类型</h2><p>不推荐使用</p>
-<p>首先我们要区分Boolean类型和Boolean基本类型。</p>
-<p>Boolean基本类型取值包括：true，false</p>
-<p>Boolean引用类型是使用new构建的。调用Boolean构造函数，传入true，false。</p>
-<p>区别：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">false</span> &amp;&amp; <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">var</span> c = b &amp;&amp; <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<h2 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h2><p>不推荐</p>
-<p>使用new创建Number引用类型</p>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>具有的方法使用Number类型同样适用。</p>
-<h4 id="toFixed"><a href="#toFixed" class="headerlink" title="toFixed"></a>toFixed</h4><p>按照指定的小数返回数值的字符串表示。</p>
-<p>接收一个参数：输出结果中小数位数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="number">23.899</span>;</span><br><span class="line"><span class="keyword">var</span> n2 = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">23.899</span>);</span><br><span class="line"><span class="built_in">console</span>.log(n1, n2); <span class="comment">//23 Number &#123;23&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(n1), <span class="keyword">typeof</span>(n2)); <span class="comment">//number object</span></span><br><span class="line"><span class="keyword">var</span> r1 = n1.toFixed(<span class="number">2</span>); <span class="comment">// '23.90'</span></span><br><span class="line"><span class="keyword">var</span> r2 = n2.toFixed(<span class="number">2</span>); <span class="comment">// '23.90'</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>不同浏览器舍入规则不同。IE8及之前不能正确处理{(-0.94, -0.5 ], [0.5, 0.94)}之间数值。</p>
-<p>一般支持0-20位小数</p>
-</blockquote>
-<h4 id="toExponential"><a href="#toExponential" class="headerlink" title="toExponential"></a>toExponential</h4><p>返回以指数表示法表示的数值的字符串形式。</p>
-<p>接收一个参数：输出结果中小数位数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="number">23.899</span>;</span><br><span class="line"><span class="keyword">var</span> n2 = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">23.899</span>);</span><br><span class="line"><span class="built_in">console</span>.log(n1.toExponential(<span class="number">2</span>)); <span class="comment">//2.39e+1</span></span><br><span class="line"><span class="built_in">console</span>.log(n2.toExponential(<span class="number">2</span>)); <span class="comment">//2.39e+1</span></span><br></pre></td></tr></table></figure>
-<h4 id="toPrecision"><a href="#toPrecision" class="headerlink" title="toPrecision"></a>toPrecision</h4><p>返回适合格式的指定小数位数的字符串。</p>
-<p>接收一个参数：输出结果中小数的位数，可能按照toFixed返回也可能按照toExponential返回。</p>
-<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><p>使用String类型的每个方法都可以直接使用String基本类型使用。</p>
-<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><h4 id="length"><a href="#length" class="headerlink" title="length"></a>length</h4><p>返回字符串长度。激励含有双字节每个字符仍然算一个字符。</p>
-<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><h4 id="字符方法"><a href="#字符方法" class="headerlink" title="字符方法"></a>字符方法</h4><h5 id="charAt"><a href="#charAt" class="headerlink" title="charAt"></a>charAt</h5><p>参数：接收一个基于零的字符位置</p>
-<p>返回：以单字符字符串的形式返回给定位置的字符</p>
-<h5 id="charCodeAt"><a href="#charCodeAt" class="headerlink" title="charCodeAt"></a>charCodeAt</h5><p>参数：接收一个基于零的字符位置</p>
-<p>返回：以单字符字符串的形式返回给定位置的字符编码</p>
-<h5 id="直接使用下标索引"><a href="#直接使用下标索引" class="headerlink" title="直接使用下标索引"></a>直接使用下标索引</h5><blockquote>
-<p>ES5新增，IE7及之前返回undefined</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdedf'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.charAt(<span class="number">2</span>)); <span class="comment">//c</span></span><br><span class="line"><span class="built_in">console</span>.log(str.charCodeAt(<span class="number">2</span>)); <span class="comment">//99</span></span><br><span class="line"><span class="built_in">console</span>.log(str[<span class="number">2</span>]); <span class="comment">//c</span></span><br></pre></td></tr></table></figure>
-<h4 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h4><h5 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h5><p>用于奖一个或多个字符串拼接起来，返回拼接得到的新字符串。实际中更多实用<strong>+</strong>号进行拼接。</p>
-<h5 id="slice-substring-substr"><a href="#slice-substring-substr" class="headerlink" title="slice,substring,substr"></a>slice,substring,substr</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abcdedfgh'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">2</span>,<span class="number">5</span>)); <span class="comment">//cde</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">2</span>,<span class="number">5</span>)); <span class="comment">//cde</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">2</span>,<span class="number">5</span>)); <span class="comment">//cdedf</span></span><br><span class="line"><span class="comment">//第一个参数为负数</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">-2</span>));<span class="comment">//gh</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">-2</span>)); <span class="comment">//abcdedfgh</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">-2</span>)); <span class="comment">//gh</span></span><br><span class="line"><span class="comment">//第二个参数为负数</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">4</span>,<span class="number">-2</span>)); <span class="comment">//edf</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">4</span>,<span class="number">-2</span>)); <span class="comment">//abcd</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">4</span>,<span class="number">-2</span>)); <span class="comment">//空字符串</span></span><br></pre></td></tr></table></figure>
-<p>参数</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>参数1</th>
-<th>参数2（缺省：字符串长度作为结束位置）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>slice</td>
-<td>子字符串开始位置（包含）</td>
-<td>子字符串结束位置（不包含）</td>
-</tr>
-<tr>
-<td>substring</td>
-<td>子字符串开始位置（包含）</td>
-<td>子字符串结束位置（不包含）</td>
-</tr>
-<tr>
-<td>substr</td>
-<td>子字符串开始位置（包含）</td>
-<td>子字符串长度（包含）</td>
-</tr>
-</tbody>
-</table>
-<p>第一个参数为负数</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>参数1为负数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>slice</td>
-<td>length+(argument1)</td>
-</tr>
-<tr>
-<td>substring</td>
-<td>全部字符串</td>
-</tr>
-<tr>
-<td>substr</td>
-<td>length+(argument1)</td>
-</tr>
-</tbody>
-</table>
-<p>第二个参数为负数</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>参数2为负数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>slice</td>
-<td>length+(argument1)</td>
-</tr>
-<tr>
-<td>substring</td>
-<td>0（<strong>substring会自动将较小的数字当作起始值</strong>）</td>
-</tr>
-<tr>
-<td>substr</td>
-<td>0（返回空字符串）</td>
-</tr>
-</tbody>
-</table>
-<h4 id="字符串位置方法"><a href="#字符串位置方法" class="headerlink" title="字符串位置方法"></a>字符串位置方法</h4><h5 id="indexOf-lastIndexOf"><a href="#indexOf-lastIndexOf" class="headerlink" title="indexOf,lastIndexOf"></a>indexOf,lastIndexOf</h5><p>从字符串中搜索给定的子字符串，返回子字符串的位置（未找到返回-1）。</p>
-<p>参数：查找字符串，查找起始位置（可选）</p>
-<p>应用：查找所有匹配的子字符串</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello Tom! How are you? I\' fine, thank you.'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(find_str(str, <span class="string">'z'</span>, <span class="number">0</span>)); <span class="comment">//-1</span></span><br><span class="line"><span class="built_in">console</span>.log(find_str(str, <span class="string">'a'</span>, <span class="number">0</span>));<span class="comment">//[15, 35]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find_str</span> (<span class="params">str, searchItem, pos</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.arr = <span class="keyword">this</span>.arr || [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> index = str.indexOf(searchItem, pos);</span><br><span class="line">    <span class="keyword">if</span> ( index == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.arr;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.arr.push(index)</span><br><span class="line">        <span class="keyword">return</span> find_str(str, searchItem, index+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="trim"><a href="#trim" class="headerlink" title="trim"></a>trim</h4><p>创建字符串的副本，删除前置及后缀的所有空格，饭后返回结果。</p>
-<blockquote>
-<p>IE9+,FF3.5+,Safari5+,Opera10.5,chrome支持</p>
-<p>FF3.5+，safari5+，chrome8+支持非标准trimLeft，teimRight</p>
-</blockquote>
-<h4 id="字符串大小写转换"><a href="#字符串大小写转换" class="headerlink" title="字符串大小写转换"></a>字符串大小写转换</h4><h5 id="toLowerCase，toUpperCase"><a href="#toLowerCase，toUpperCase" class="headerlink" title="toLowerCase，toUpperCase"></a>toLowerCase，toUpperCase</h5><h4 id="字符串模式匹配方法"><a href="#字符串模式匹配方法" class="headerlink" title="字符串模式匹配方法"></a>字符串模式匹配方法</h4><h5 id="match"><a href="#match" class="headerlink" title="match"></a>match</h5><p>参数：接收一个参数，正则表达式或者字符串</p>
-<p>输出：返回一个数组。当参数没有设置全局搜索g时与RegExp对象exec相同。当设置g时，返回左右匹配字符串组成的数组。</p>
-<ul>
-<li><p>当不设置全局搜索g时，返回第一个匹配的项目就停止，再次执行还是相同结果。</p>
-<p>返回的是对象，0:匹配项全部，1-n:匹配组，index：匹配项起始下标，input：输入数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello Tom! How are you? I\' fine, thank you.'</span>;</span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/(.o)(u)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> m1 = str.match(reg1);</span><br><span class="line"><span class="keyword">var</span> mr1 = reg1.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg1));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">0: "you"</span></span><br><span class="line"><span class="comment">1: "yo"</span></span><br><span class="line"><span class="comment">2: "u"</span></span><br><span class="line"><span class="comment">groups:undefined</span></span><br><span class="line"><span class="comment">index: 19</span></span><br><span class="line"><span class="comment">input: "Hello Tom! How are you? I' fine, thank you."</span></span><br><span class="line"><span class="comment">length: 3</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(reg1.exec(str));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">0: "you"</span></span><br><span class="line"><span class="comment">1: "yo"</span></span><br><span class="line"><span class="comment">2: "u"</span></span><br><span class="line"><span class="comment">groups:undefined</span></span><br><span class="line"><span class="comment">index: 19</span></span><br><span class="line"><span class="comment">input: "Hello Tom! How are you? I' fine, thank you."</span></span><br><span class="line"><span class="comment">length: 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>当设置全局搜索时，match返回所有匹配项目组成的数组，exec返回匹配的第一项，再次执行在此基础上搜索下一项。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello Tom! How are you? I\' fine, thank you.'</span>;</span><br><span class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/(.o)(u)/g</span>;</span><br><span class="line"><span class="keyword">var</span> m2 = str.match(reg2);</span><br><span class="line"><span class="keyword">var</span> mr2 = reg2.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(m2); <span class="comment">//["you", "you"]</span></span><br><span class="line"><span class="built_in">console</span>.log(mr2); <span class="comment">// ["you", "yo", "u", index: 19, input: "Hello Tom! How are you? I' fine, thank you.", groups: undefined]</span></span><br><span class="line"><span class="built_in">console</span>.log(reg2.exec(str)); <span class="comment">// ["you", "yo", "u", index: 39, input: "Hello Tom! How are you? I' fine, thank you.", groups: undefined]</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="search"><a href="#search" class="headerlink" title="search"></a>search</h5><p>参数：接收一个参数，正则表达式或者字符串</p>
-<p>输出：返回第一个匹配项的索引。未找到返回-1</p>
-<p>始终从字符串开头向后查找</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello Tom! How are you? I\' fine, thank you.'</span>;</span><br><span class="line"><span class="keyword">var</span> index = str.search(<span class="string">'o'</span>); <span class="comment">//4</span></span><br></pre></td></tr></table></figure>
-<h5 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h5><p>参数：两个，第一个参数需要匹配的regexp或字符串（不会被转换成正则表达式），第二个参数时字符串或者<strong>函数</strong></p>
-<p>注意：第一个参数设置为全局g正则表达式才可以替换全部字符串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello Tom! How are you? I\' fine, thank you.'</span>;</span><br><span class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/(.o)(u)/g</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = str.replace(reg2, <span class="string">'^V^'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str2); <span class="comment">//Hello Tom! How are ^V^? I' fine, thank ^V^.</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>当第二个参数为字符串时，可以使用它数字符序列将正则表达式得到的值插入到结果字符串中。</p>
-<p>| 字符序列 | 替换文本                                                     |<br>| ——– | ———————————————————— |<br>| $$       | $                                                            |<br>| $&amp;       | 匹配整个模式的字符串                                         |<br>| $’       | 匹配子字符串之前的子字符串                                   |<br>| $`       | 匹配子字符串之后的子字符串                                   |<br>| $n       | 匹配第n个捕获组的子字符串，其中n等于0-9。如果正则表达式中没有定义捕获组，则使用空字符串。 |<br>| $nn      | 匹配第nn个捕获组的字符串，其中nn等于01-99。如果正则表达式中没有定义捕获组，则使用空字符串。 |</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello Tom! How are you? I\' fine, thank you.'</span>;</span><br><span class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/(.o)(u)/g</span>;</span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/(.ou)/g</span>;</span><br><span class="line"><span class="keyword">var</span> reg0 = <span class="regexp">/.ou/g</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg0, <span class="string">'$1  ^V^'</span>)); <span class="comment">//Hello Tom! How are $1  ^V^? I' fine, thank $1  ^V^.</span></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg1, <span class="string">'$1  ^V^'</span>)); <span class="comment">//Hello Tom! How are you  ^V^? I' fine, thank you  ^V^.</span></span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg2, <span class="string">'$1  ^V^'</span>)); <span class="comment">//Hello Tom! How are yo  ^V^? I' fine, thank yo  ^V^.</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当第二个参数为函数时，可以对匹配项进行更精密的操作</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;p&gt;question: if (a&gt;b) &#123; return a;&#125; else &#123;return b;&#125;&lt;/p&gt;'</span>;</span><br><span class="line"><span class="keyword">var</span> arr = str.replace(<span class="regexp">/[&lt;&gt;&amp;\/]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">match, pos, str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (match) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'&lt;'</span> :</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'&amp;lt'</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'&gt;'</span> :</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'&amp;gt'</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'&amp;'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'&amp;amp'</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'/'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'&amp;quot'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//&lt;p&gt;question: if (a&gt;b) &#123; return a;&#125; else &#123;return b;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//&amp;ltp&amp;gtquestion: if (a&amp;gtb) &#123; return a;&#125; else &#123;return b;&#125;&amp;lt&amp;quotp&amp;gt</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="split"><a href="#split" class="headerlink" title="split"></a>split</h5><p>基于指定的分隔符将一个字符串分割成多个字符串组成的数组。</p>
-<p>参数：两个参数，第一个参数字符串或regexp对象，第二个参数（可选）指定数组的大小，确保返回的数组不会超过既定大小。</p>
-<p>注意：简单匹配浏览器无差别，对于包含捕获组或者未发现匹配项的模式匹配行为不同。这里展示chrome结果</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello Tom! How are you? I\' fine, thank you.'</span>;</span><br><span class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/(.o)(u)/g</span>;</span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/(.ou)/g</span>;</span><br><span class="line"><span class="keyword">var</span> reg0 = <span class="regexp">/.ou/g</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str.split(reg0)); <span class="comment">//["Hello Tom! How are ", "? I' fine, thank ", "."]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(reg1)); <span class="comment">//["Hello Tom! How are ", "you", "? I' fine, thank ", "you", "."]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(reg2)); <span class="comment">//["Hello Tom! How are ", "yo", "u", "? I' fine, thank ", "yo", "u", "."]</span></span><br></pre></td></tr></table></figure>
-<h5 id="localeCompare"><a href="#localeCompare" class="headerlink" title="localeCompare"></a>localeCompare</h5><p>比较两个字符串，并按下面规则返回</p>
-<ul>
-<li>字符串在字母表中排在字符串参数之前，返回负数</li>
-<li>字符串在字母表中排在字符串参数之后，返回正数</li>
-<li>相等，返回0</li>
-</ul>
-<blockquote>
-<p>支持地区决定方法行为，不同地区排序可能不同。</p>
-</blockquote>
-<h5 id="fromCharCode"><a href="#fromCharCode" class="headerlink" title="fromCharCode"></a>fromCharCode</h5><p>将字符编码转换为字符串，与charCodeAt行为相反。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3008,7 +2835,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3030,7 +2857,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
