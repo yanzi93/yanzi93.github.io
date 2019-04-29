@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="http," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="浅读《图解HTTP》，这本书有一点老了，信息跟不上现在更新的步伐。不过作为了解的入门还是非常浅显易懂的。这也算不上什么笔记，只是对书中认为重要的知识点做了一个小的概括。 web及网络基础TCP/IP把与互联网关联的协议结合起来称为TCP/IP。 TCP/IP分层TCP/IP是分层的，进行网络通信时发送端从应用层往下走，接收端则往应用层上走。  应用层 FTP、DNS、HTTP 决定了向用户提供应用">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http图解">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/http图解/index.html">
+<meta property="og:site_name" content="Swallow Home">
+<meta property="og:description" content="浅读《图解HTTP》，这本书有一点老了，信息跟不上现在更新的步伐。不过作为了解的入门还是非常浅显易懂的。这也算不上什么笔记，只是对书中认为重要的知识点做了一个小的概括。 web及网络基础TCP/IP把与互联网关联的协议结合起来称为TCP/IP。 TCP/IP分层TCP/IP是分层的，进行网络通信时发送端从应用层往下走，接收端则往应用层上走。  应用层 FTP、DNS、HTTP 决定了向用户提供应用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-12T09:03:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http图解">
+<meta name="twitter:description" content="浅读《图解HTTP》，这本书有一点老了，信息跟不上现在更新的步伐。不过作为了解的入门还是非常浅显易懂的。这也算不上什么笔记，只是对书中认为重要的知识点做了一个小的概括。 web及网络基础TCP/IP把与互联网关联的协议结合起来称为TCP/IP。 TCP/IP分层TCP/IP是分层的，进行网络通信时发送端从应用层往下走，接收端则往应用层上走。  应用层 FTP、DNS、HTTP 决定了向用户提供应用">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/03/http图解/"/>
+
+
+
+
+
+  <title>http图解 | Swallow Home</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?338c4c6ab629d1e44bcb4ad2922054b8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Swallow Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/http图解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yanzi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">http图解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T16:58:57+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/http/" itemprop="url" rel="index">
+                    <span itemprop="name">http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/03/http图解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/03/http图解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>浅读《图解HTTP》，这本书有一点老了，信息跟不上现在更新的步伐。不过作为了解的入门还是非常浅显易懂的。这也算不上什么笔记，只是对书中认为重要的知识点做了一个小的概括。</p>
+<h1 id="web及网络基础"><a href="#web及网络基础" class="headerlink" title="web及网络基础"></a>web及网络基础</h1><h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><p>把与互联网关联的协议结合起来称为TCP/IP。</p>
+<h3 id="TCP-IP分层"><a href="#TCP-IP分层" class="headerlink" title="TCP/IP分层"></a>TCP/IP分层</h3><p>TCP/IP是分层的，进行网络通信时发送端从应用层往下走，接收端则往应用层上走。</p>
+<ul>
+<li><p>应用层 FTP、DNS、HTTP</p>
+<p>决定了向用户提供应用服务时通信的活动。</p>
+</li>
+<li><p>传输层 TCP、UDP</p>
+<p>对上层应用层，提供处于网络连接中两台计算机之间的数据传输。</p>
+<p>进行数据分割，并在报文上标记序号及端口号</p>
+</li>
+<li><p>网络层 IP</p>
+<p>处理在网络上流动的数据包，规定传输路线。</p>
+<p>增加MAC地址转发给链路层</p>
+</li>
+<li><p>链路层</p>
+<p>处理连接网络的硬件部分。硬件上的范畴均在链路层的作用范围。</p>
+</li>
+</ul>
+<h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><p>位于网络层，作用就是把各种数据包传送给对方。</p>
+<p>IP地址指明节点被分配地址，可以和MAC地址进配对。</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>位于传输层，提供可靠的字节流服务。及把大数据分割为报文并准确送达对方。</p>
+<h4 id="TCP如何确保准确送达目的地："><a href="#TCP如何确保准确送达目的地：" class="headerlink" title="TCP如何确保准确送达目的地："></a>TCP如何确保准确送达目的地：</h4><p>TCP三次握手</p>
+<ol>
+<li>发送端发送一个带SYN标志数据包给对方</li>
+<li>接受端收到后回传一个SYN/ACK标志数据包确认信息</li>
+<li>发送端回传一个带ACK标志数据包，代表握手结束建立连接。</li>
+</ol>
+<p>TCP握手阶段莫名中断，会以相同顺序放相同数据包。</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>Domain Name System，位于应用层，提供域名到IP地址之间的解析服务或逆向查询。</p>
+<h2 id="URI、URL"><a href="#URI、URL" class="headerlink" title="URI、URL"></a>URI、URL</h2><p>URI：统一资源标识符，用于标识互联网资源</p>
+<p>URL：表示资源的地点。是URI的子集。</p>
+<h2 id="浏览器打开页面过程"><a href="#浏览器打开页面过程" class="headerlink" title="浏览器打开页面过程"></a>浏览器打开页面过程</h2><ol>
+<li>在地址栏输入URL回车</li>
+<li>发送给DNS域名，查询对应IP地址。</li>
+<li>HTTP协议生成针对WEB服务器的HTTP请求报文</li>
+<li>TCP将请求报文分为报文段发送</li>
+<li>IP协议负责网络传送线路</li>
+<li>接收方TCP接收到报文段重组位报文</li>
+<li>接收方HTTP对web服务器请求内容进行处理</li>
+</ol>
+<h1 id="简单HTTP协议"><a href="#简单HTTP协议" class="headerlink" title="简单HTTP协议"></a>简单HTTP协议</h1><p>http协议默认80端口；https默认使用443端口</p>
+<p>http：HyperText Transfeer Protocol，超文本传输协议。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li><p>无状态：不做持久化处理。</p>
+<p>解决无状态引入cookie技术</p>
+</li>
+<li><p>持久连接  HTTP1.1开始默认持久连接</p>
+</li>
+<li><p>请求必须由客服端发出，服务端回复响应。</p>
+</li>
+</ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>通信使用明文 窃听</li>
+<li>不验证通信方身份 伪装</li>
+<li>无法证明报文完整性 篡改</li>
+</ul>
+<h2 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h2><ul>
+<li>GET获取资源</li>
+<li>POST传输实体主体</li>
+<li>PUT传输文件，不带验证机制存在安全问题</li>
+<li>HEAD获得报文首部，用于确定URI有效性及资源更新的日期等</li>
+<li>DELETE删除文件，不带验证机制</li>
+<li>OPTIONS询问支持方法</li>
+<li>TRACE追踪路径，容易引发XST跨站追踪攻击</li>
+<li>CONNECT要求用隧道协议连接代理，主要使用SSL、TLS</li>
+</ul>
+<h3 id="持久连接-（HTTP1-1默认持久连接）"><a href="#持久连接-（HTTP1-1默认持久连接）" class="headerlink" title="持久连接 （HTTP1.1默认持久连接）"></a>持久连接 （HTTP1.1默认持久连接）</h3><p>只要任意一端没有明确提出断开连接，则保持TCP连接状态。</p>
+<p>好处：减少TCP连接的重复建立和断开造成的额外开销，减轻服务器荷载。提高web页面显示速度。</p>
+<h3 id="管线化"><a href="#管线化" class="headerlink" title="管线化"></a>管线化</h3><p>不用等待响应亦可发送下一个请求。并发发送请求。</p>
+<h3 id="Cookie状态管理"><a href="#Cookie状态管理" class="headerlink" title="Cookie状态管理"></a>Cookie状态管理</h3><p>通过在请求和响应报文中写入Cookie信息控制客户端状态。</p>
+<h1 id="HTTP信息"><a href="#HTTP信息" class="headerlink" title="HTTP信息"></a>HTTP信息</h1><p>HTTP报文大致分为：报文首部+ 空行+报文主体。</p>
+<h2 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h2><p>报文首部 + 空行 + 报文主体</p>
+<ul>
+<li>报文首部：请求行+请求首部字段+通用首部字段+实体首部字段+其他</li>
+<li>请求行：请求方法，请求URI，协议版本</li>
+</ul>
+<h2 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h2><p>报文首部 + 空行 + 报文主体</p>
+<ul>
+<li>报文首部： 状态行+响应首部字段+通用首部字段+实体首部字段+其他</li>
+<li>状态行： 协议版本，状态吗，解释状态码的原因短语</li>
+</ul>
+<h2 id="Cookie相关首部字段"><a href="#Cookie相关首部字段" class="headerlink" title="Cookie相关首部字段"></a>Cookie相关首部字段</h2><ul>
+<li><p>set-Cookie 响应首部字段</p>
+<p>expires：有效期（默认浏览器关闭前为止）</p>
+<p>domain：域名（默认创建Cookie的服务器域名）</p>
+<p>HttpOnly：加以限制，使Cookie不能被js脚本访问，防止跨站脚本攻击（XSS）</p>
+<p>Secure：仅在HTTPS安全通信发送Cookie</p>
+</li>
+<li><p>Cookie 请求首部字段</p>
+</li>
+</ul>
+<h2 id="发送方式和格式"><a href="#发送方式和格式" class="headerlink" title="发送方式和格式"></a>发送方式和格式</h2><ol>
+<li><p>压缩传输内容编码</p>
+</li>
+<li><p>分割发送的分块传输编码</p>
+</li>
+<li><p>发送多种数据的多部分对象集合：MIME</p>
+<p>在HTTP首部字段加Content-type</p>
+<ul>
+<li>multipart/form-data：web表单文件上传</li>
+<li>multipart/byteranges：状态码206相应报文包含多个范围的内容</li>
+</ul>
+</li>
+<li><p>获取部分内容的范围请求：</p>
+<p>请求头部加Range，并且首部字段Content-Type标明multipart/byteranges</p>
+<p>响应返回状态码206，无法响应范围请求则返回全部和200</p>
+</li>
+<li><p>内容协商返回最合适内容（Content Negotiation）</p>
+</li>
+</ol>
+<h2 id="媒体类型"><a href="#媒体类型" class="headerlink" title="媒体类型"></a>媒体类型</h2><ul>
+<li>文本文件<ul>
+<li>text/html, text/plain, text/css</li>
+<li>application/xhtml+xml, application/xml</li>
+</ul>
+</li>
+<li>图片文件<ul>
+<li>image/jpeg, image/gif, image/png</li>
+</ul>
+</li>
+<li>视频文件<ul>
+<li>video/mpeg, video/quicktime</li>
+</ul>
+</li>
+<li>应用程序使用的二进制文件<ul>
+<li>application/octet-stream, application/zip</li>
+</ul>
+</li>
+</ul>
+<h1 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h1><p>负责表示客服端HTTP请求的返回结果，标记服务器端的处理是否正常，通知出现的错误等工作。</p>
+<p>状态码以3位数字和原因短语组成，第一位指定响应类别。</p>
+<h2 id="状态码类别"><a href="#状态码类别" class="headerlink" title="状态码类别"></a>状态码类别</h2><ul>
+<li>1XX 接受的请求正在处理 信息性状态码</li>
+<li>2XX 请求正常处理完毕 成功状态码<ul>
+<li>200 OK</li>
+<li>204 No Content 返回响应报文不含实体的主体部分</li>
+<li>206 Partial Content 范围请求</li>
+</ul>
+</li>
+<li>3XX 需要进行附加操作以完成请求 重定向状态码<ul>
+<li>301 Moved Permanently 永久性重定向</li>
+<li>302 Found 临时重定向 （如保存在书签中，不会修改书签保存地址） POST变成GET</li>
+<li>304 Not Modified 客服端发送附带条件请求时服务端逊于请求访问资源单未满足条件（返回不包含任何响应主体部分）。</li>
+<li>307 Temporary Redirect 临时重定向。禁止POST变成GET</li>
+</ul>
+</li>
+<li>4XX 无腹鳍无法处理请求 客户端错误状态码<ul>
+<li>400 Bad Request 请求报文存在语法错误</li>
+<li>401 Unauthorized 需要认证信息或认证失败</li>
+<li>403 Forbidden 请求被拒绝，没有资源访问权</li>
+<li>404 Not Found 未找到资源</li>
+</ul>
+</li>
+<li>5XX 服务器处理请求出错 服务器错误状态码<ul>
+<li>500 Internal Server Error 服务端执行请求发生错误</li>
+<li>503 Service Unavailable 服务器暂时处于超负荷或停机维护</li>
+</ul>
+</li>
+</ul>
+<h1 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h1><p>使用单台虚拟主机实现多个域名：（Web托管服务）IP地址相同，根据域名host区分。</p>
+<h2 id="通信数据转发程序：代理、网关、隧道"><a href="#通信数据转发程序：代理、网关、隧道" class="headerlink" title="通信数据转发程序：代理、网关、隧道"></a>通信数据转发程序：代理、网关、隧道</h2><p>将请求转发给通信线路上的下一站服务器，并且能接受从那台服务器发送的响应再转发给客户端。</p>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>有转发功能的应用程序，扮演服务器和客户端中间人角色为两者传递信息。</p>
+<ul>
+<li>代理不改变请求URI，会直接发送给前方目标服务器。</li>
+<li>每次通过代理服务器，会追加Via首部信息</li>
+</ul>
+<p>使用代理原因：利用缓存技术减少网络带宽的流量，组织内部针对特定网站的访问控制，以获取访问日志位主要目的等。</p>
+<p>代理方法：缓存代理，透明代理</p>
+<h3 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h3><p>转发其他服务器通信数据的服务器。</p>
+<ul>
+<li>利用网关可以由HTTP请求转化为其他协议通信（区别于代理）</li>
+<li>提高通信的安全性。客户端和网关之间可以加密</li>
+</ul>
+<h3 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h3><p>在客户端和服务端之间进行中转，并保持双发通信连接的应用程序。使用SSL等加密手段进行通信。</p>
+<p>目的：确保客户端能与服务器进行安全的通信，隧道本身不会解析HTTP请求。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>指代理服务器或客户端本地磁盘保存的资源副本。</p>
+<p>优点：减少对资源服务器的访问，节省了通信流量和通信时间。</p>
+<p>缓存服务器优点：避免多次从原服务器转发资源，客户端就近获取资源。</p>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>解决http存在部分缺陷，在http上加入加密处理和认证机制即https。HTTPS采用混合加密机制（共享密钥和公开密钥加密混用）。</p>
+<h2 id="与HTTP区别"><a href="#与HTTP区别" class="headerlink" title="与HTTP区别"></a>与HTTP区别</h2><p>通信接口部分使用SSL和TLS协议代替。通常HTTP直接和TCP通信，改为先和SSL通信，在再由SSL和TCP通信。使HTTPS拥有加密，证书和完整性保护功能。</p>
+<h2 id="为什么不一致使用HTTPS"><a href="#为什么不一致使用HTTPS" class="headerlink" title="为什么不一致使用HTTPS"></a>为什么不一致使用HTTPS</h2><ol>
+<li>加密通信消耗更多CPU及内存资源</li>
+<li>购买证书需要开销</li>
+</ol>
+<h2 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h2><h3 id="加密方式"><a href="#加密方式" class="headerlink" title="加密方式"></a>加密方式</h3><p>采用公开密钥加密，公开密钥加密使用非对称密钥（私有密钥，公开密钥）。</p>
+<p>发送密文的一方使用对方的公开密钥进行加密处理，对方收到加密信息后使用自己的私有密钥进行解密。</p>
+<p>如何证明公开密钥的正确性：数字证书</p>
+<h3 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h3><p>处理速度变慢。通信慢并大量消耗CPU即内存等资源。</p>
+<p>解决方案：使用SSL加速器硬件改善。</p>
+<h1 id="用户身份认证"><a href="#用户身份认证" class="headerlink" title="用户身份认证"></a>用户身份认证</h1><h3 id="BASIC认证"><a href="#BASIC认证" class="headerlink" title="BASIC认证"></a>BASIC认证</h3><p>需要认证，服务器返回状态吗401</p>
+<p>放松明文密码</p>
+<h3 id="DIGEST认证"><a href="#DIGEST认证" class="headerlink" title="DIGEST认证"></a>DIGEST认证</h3><p>质询响应，等级高于BASIC认证</p>
+<h3 id="SSL客户端认证"><a href="#SSL客户端认证" class="headerlink" title="SSL客户端认证"></a>SSL客户端认证</h3><p>证书认证，需要费用。</p>
+<h3 id="表单认证"><a href="#表单认证" class="headerlink" title="表单认证"></a>表单认证</h3><h4 id="Session管理及Cookie应用"><a href="#Session管理及Cookie应用" class="headerlink" title="Session管理及Cookie应用"></a>Session管理及Cookie应用</h4><ul>
+<li><p>客服端把用户ID和密码等登陆信息放入报文实体，以POST发送</p>
+</li>
+<li><p>服务器发放用以识别用户的Session ID。通过验证从客户端发送来的登陆信息进行身份认证，把用户认证状态与Session ID绑定记录在服务端。</p>
+<p>客户端返回响应时写入Set-Cookie</p>
+</li>
+<li><p>客户端接受从服务器发来的Session ID，将其作为Cookie保存在本地。再次自动携带Cookie发送请求。</p>
+</li>
+</ul>
+<h1 id="基于HTTP的功能追加协议"><a href="#基于HTTP的功能追加协议" class="headerlink" title="基于HTTP的功能追加协议"></a>基于HTTP的功能追加协议</h1><h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>异步js与XML技术，有效利用js和DOM操作以达到局部Web页面替换加载的一部通信手段。只更新部分页面，传输数据量更小。</p>
+<p>核心：XMLHttpRequest的API</p>
+<p>缺点：利用Ajax实时从服务器获取内通，会导致大量请求产生；未解决HTTP协议本身存在问题；破坏浏览器前进后退功能。</p>
+<h2 id="SPDY"><a href="#SPDY" class="headerlink" title="SPDY"></a>SPDY</h2><p>Google 2010年发布</p>
+<ul>
+<li>多路复用，单一TCP连接可处理多个HTTP请求</li>
+<li>赋予请求优先级</li>
+<li>压缩HTTP首部</li>
+<li>推送功能，支持服务器主动向客户端推送数据功能</li>
+<li>服务器提示功能，主动提示客户端请求所需资源</li>
+</ul>
+<p>缺点：只用单个域名通信多路复用</p>
+<p>2016年结束支持，为HTTP2.0前身</p>
+<h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p><strong>单个TCP连接上建立的全双工通信</strong></p>
+<p>建立在HTTP基础上的协议，连接放发起方仍是客户端，<strong>一旦建立不论服务器还是客户端均能直接向对方放松报文。</strong></p>
+<ul>
+<li><p>推送功能</p>
+</li>
+<li><p>减少通信量</p>
+<p>握手请求：</p>
+<p>Upgrade: websocket Connection:Upgrade</p>
+<p>握手响应：</p>
+<p>状态吗101 Switching Prtocols</p>
+</li>
+</ul>
+<h1 id="Web攻击技术"><a href="#Web攻击技术" class="headerlink" title="Web攻击技术"></a>Web攻击技术</h1><ul>
+<li><p>XSS跨站脚本攻击</p>
+<p>通过存在安全漏洞的Web网站注册用户的浏览器內运行非法的HTML标签或者js进行攻击。</p>
+</li>
+<li><p>SQL注入攻击</p>
+<p>针对Web应用使用的数据库，通过运行非法SQL产生的攻击。</p>
+</li>
+<li><p>OS命令注入攻击</p>
+<p>通过Web应用执行非法的造作系统命令达到攻击的目的。</p>
+</li>
+<li><p>会话劫持</p>
+<p>通过某种手段拿到用户会话ID，伪装用户</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/21/ES6-函数/" rel="next" title="ES6中函数">
+                <i class="fa fa-chevron-left"></i> ES6中函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/13/ES6-array/" rel="prev" title="ES6_array">
+                ES6_array <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">yanzi</p>
+              <p class="site-description motion-element" itemprop="description">I don't know go where, but i have been on the road</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yanzi93" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lixueyan@mail.ustc.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web及网络基础"><span class="nav-number">1.</span> <span class="nav-text">web及网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP"><span class="nav-number">1.1.</span> <span class="nav-text">TCP/IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP分层"><span class="nav-number">1.1.1.</span> <span class="nav-text">TCP/IP分层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP"><span class="nav-number">1.1.2.</span> <span class="nav-text">IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">1.1.3.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP如何确保准确送达目的地："><span class="nav-number">1.1.3.1.</span> <span class="nav-text">TCP如何确保准确送达目的地：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.1.4.</span> <span class="nav-text">DNS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URI、URL"><span class="nav-number">1.2.</span> <span class="nav-text">URI、URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器打开页面过程"><span class="nav-number">1.3.</span> <span class="nav-text">浏览器打开页面过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单HTTP协议"><span class="nav-number">2.</span> <span class="nav-text">简单HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">2.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP方法"><span class="nav-number">2.3.</span> <span class="nav-text">HTTP方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#持久连接-（HTTP1-1默认持久连接）"><span class="nav-number">2.3.1.</span> <span class="nav-text">持久连接 （HTTP1.1默认持久连接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管线化"><span class="nav-number">2.3.2.</span> <span class="nav-text">管线化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie状态管理"><span class="nav-number">2.3.3.</span> <span class="nav-text">Cookie状态管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP信息"><span class="nav-number">3.</span> <span class="nav-text">HTTP信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#请求报文"><span class="nav-number">3.1.</span> <span class="nav-text">请求报文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应报文"><span class="nav-number">3.2.</span> <span class="nav-text">响应报文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie相关首部字段"><span class="nav-number">3.3.</span> <span class="nav-text">Cookie相关首部字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送方式和格式"><span class="nav-number">3.4.</span> <span class="nav-text">发送方式和格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体类型"><span class="nav-number">3.5.</span> <span class="nav-text">媒体类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP状态码"><span class="nav-number">4.</span> <span class="nav-text">HTTP状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码类别"><span class="nav-number">4.1.</span> <span class="nav-text">状态码类别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web服务器"><span class="nav-number">5.</span> <span class="nav-text">Web服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通信数据转发程序：代理、网关、隧道"><span class="nav-number">5.1.</span> <span class="nav-text">通信数据转发程序：代理、网关、隧道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代理"><span class="nav-number">5.1.1.</span> <span class="nav-text">代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网关"><span class="nav-number">5.1.2.</span> <span class="nav-text">网关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隧道"><span class="nav-number">5.1.3.</span> <span class="nav-text">隧道</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">5.2.</span> <span class="nav-text">缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS"><span class="nav-number">6.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与HTTP区别"><span class="nav-number">6.1.</span> <span class="nav-text">与HTTP区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么不一致使用HTTPS"><span class="nav-number">6.2.</span> <span class="nav-text">为什么不一致使用HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL"><span class="nav-number">6.3.</span> <span class="nav-text">SSL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加密方式"><span class="nav-number">6.3.1.</span> <span class="nav-text">加密方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效率"><span class="nav-number">6.3.2.</span> <span class="nav-text">效率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户身份认证"><span class="nav-number">7.</span> <span class="nav-text">用户身份认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BASIC认证"><span class="nav-number">7.0.1.</span> <span class="nav-text">BASIC认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DIGEST认证"><span class="nav-number">7.0.2.</span> <span class="nav-text">DIGEST认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL客户端认证"><span class="nav-number">7.0.3.</span> <span class="nav-text">SSL客户端认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单认证"><span class="nav-number">7.0.4.</span> <span class="nav-text">表单认证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Session管理及Cookie应用"><span class="nav-number">7.0.4.1.</span> <span class="nav-text">Session管理及Cookie应用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于HTTP的功能追加协议"><span class="nav-number">8.</span> <span class="nav-text">基于HTTP的功能追加协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax"><span class="nav-number">8.1.</span> <span class="nav-text">Ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPDY"><span class="nav-number">8.2.</span> <span class="nav-text">SPDY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket"><span class="nav-number">8.3.</span> <span class="nav-text">WebSocket</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web攻击技术"><span class="nav-number">9.</span> <span class="nav-text">Web攻击技术</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yanzi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://Disscuss.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/08/03/http图解/';
+          this.page.identifier = '2018/08/03/http图解/';
+          this.page.title = 'http图解';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://Disscuss.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
