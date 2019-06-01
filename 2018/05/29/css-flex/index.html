@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="flex," />
+  <meta name="keywords" content="CSS布局," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="flex即(Flexible Box)的缩写，意思为弹性盒模型。2009年由W3C提出的一种新的布局方案，目前已得到所有浏览器支持。 注意：  任何元素都可以指定为flex布局，包括行内元素（inline-flex）。 子元素float，clear，vertical-align属性失效。  flex基本概念可以把flex元素想象成一个容器，容器中所有子元素自动成为容器成员（flex item）。">
-<meta name="keywords" content="flex">
+<meta name="keywords" content="CSS布局">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flex布局">
 <meta property="og:url" content="http://yoursite.com/2018/05/29/css-flex/index.html">
@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/05/29/css-flex/order.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/29/css-flex/flex_grow.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/29/css-flex/flex_shink.png">
-<meta property="og:updated_time" content="2018-05-29T08:01:26.000Z">
+<meta property="og:updated_time" content="2019-06-01T11:07:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flex布局">
 <meta name="twitter:description" content="flex即(Flexible Box)的缩写，意思为弹性盒模型。2009年由W3C提出的一种新的布局方案，目前已得到所有浏览器支持。 注意：  任何元素都可以指定为flex布局，包括行内元素（inline-flex）。 子元素float，clear，vertical-align属性失效。  flex基本概念可以把flex元素想象成一个容器，容器中所有子元素自动成为容器成员（flex item）。">
@@ -108,9 +108,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -201,12 +201,42 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -246,9 +276,9 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/css-flex/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
+      <meta itemprop="name" content="Swallow">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avator.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -295,8 +325,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
                   </a>
                 </span>
 
@@ -460,12 +490,30 @@
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Swallow
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/05/29/css-flex/" title="flex布局">http://yoursite.com/2018/05/29/css-flex/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/flex/" rel="tag"># flex</a>
+            <a href="/tags/CSS布局/" rel="tag"># CSS布局</a>
           
         </div>
       
@@ -556,7 +604,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">yanzi</p>
+              <img class="site-author-image" itemprop="image"
+                src="/images/avator.jpeg"
+                alt="Swallow" />
+            
+              <p class="site-author-name" itemprop="name">Swallow</p>
               <p class="site-description motion-element" itemprop="description">I don't know go where, but i have been on the road</p>
           </div>
 
@@ -578,7 +630,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -589,7 +641,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -646,7 +698,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">yanzi</span>
+  <span class="author" itemprop="copyrightHolder">swallow</span>
 
   
 </div>
@@ -660,7 +712,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -680,6 +732,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -759,6 +813,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

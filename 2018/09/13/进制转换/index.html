@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="二进制、十进制、十六进制数字的互转计算：  二／八／十六  =&amp;gt; 十进制 从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和  十进制 =&amp;gt; 二／八／十六 十进制数字除以2/8/16记录余数，商继续除以2/8/16，直到除数小于2/8/16，余数依次组合最先得到余数是低位。  二进制 =&amp;gt;  八／十六 八进制： 取三合一法，即从二进制的小数点为分界点，向">
-<meta name="keywords" content="javascript">
+<meta name="description" content="二进制、十进制、十六进制数字的互转  计算：  二／八／十六  =&amp;gt; 十进制 从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和  十进制 =&amp;gt; 二／八／十六 十进制数字除以2/8/16记录余数，商继续除以2/8/16，直到除数小于2/8/16，余数依次组合最先得到余数是低位。  二进制 =&amp;gt;  八／十六 八进制： 取三合一法，即从二进制的小数点为分界点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="进制转换">
 <meta property="og:url" content="http://yoursite.com/2018/09/13/进制转换/index.html">
 <meta property="og:site_name" content="Swallow Home">
-<meta property="og:description" content="二进制、十进制、十六进制数字的互转计算：  二／八／十六  =&amp;gt; 十进制 从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和  十进制 =&amp;gt; 二／八／十六 十进制数字除以2/8/16记录余数，商继续除以2/8/16，直到除数小于2/8/16，余数依次组合最先得到余数是低位。  二进制 =&amp;gt;  八／十六 八进制： 取三合一法，即从二进制的小数点为分界点，向">
+<meta property="og:description" content="二进制、十进制、十六进制数字的互转  计算：  二／八／十六  =&amp;gt; 十进制 从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和  十进制 =&amp;gt; 二／八／十六 十进制数字除以2/8/16记录余数，商继续除以2/8/16，直到除数小于2/8/16，余数依次组合最先得到余数是低位。  二进制 =&amp;gt;  八／十六 八进制： 取三合一法，即从二进制的小数点为分界点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-13T05:27:52.000Z">
+<meta property="og:updated_time" content="2019-06-01T11:06:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进制转换">
-<meta name="twitter:description" content="二进制、十进制、十六进制数字的互转计算：  二／八／十六  =&amp;gt; 十进制 从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和  十进制 =&amp;gt; 二／八／十六 十进制数字除以2/8/16记录余数，商继续除以2/8/16，直到除数小于2/8/16，余数依次组合最先得到余数是低位。  二进制 =&amp;gt;  八／十六 八进制： 取三合一法，即从二进制的小数点为分界点，向">
+<meta name="twitter:description" content="二进制、十进制、十六进制数字的互转  计算：  二／八／十六  =&amp;gt; 十进制 从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和  十进制 =&amp;gt; 二／八／十六 十进制数字除以2/8/16记录余数，商继续除以2/8/16，直到除数小于2/8/16，余数依次组合最先得到余数是低位。  二进制 =&amp;gt;  八／十六 八进制： 取三合一法，即从二进制的小数点为分界点">
 
 
 
@@ -98,9 +97,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -191,12 +190,42 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -236,9 +265,9 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/进制转换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yanzi">
+      <meta itemprop="name" content="Swallow">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avator.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -273,6 +302,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BASIC/" itemprop="url" rel="index">
+                    <span itemprop="name">BASIC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -300,7 +351,8 @@
       
 
       
-        <h4 id="二进制、十进制、十六进制数字的互转"><a href="#二进制、十进制、十六进制数字的互转" class="headerlink" title="二进制、十进制、十六进制数字的互转"></a>二进制、十进制、十六进制数字的互转</h4><p>计算：</p>
+        <p>二进制、十进制、十六进制数字的互转 </p>
+<p>计算：</p>
 <ul>
 <li><p>二／八／十六  =&gt; 十进制</p>
 <p>从低位到高位（即从右往左）计算，分别为2/8/16的0，1，2，3…次方求和</p>
@@ -337,14 +389,26 @@
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Swallow
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/09/13/进制转换/" title="进制转换">http://yoursite.com/2018/09/13/进制转换/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
-        </div>
       
 
       
@@ -415,21 +479,16 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">yanzi</p>
+              <img class="site-author-image" itemprop="image"
+                src="/images/avator.jpeg"
+                alt="Swallow" />
+            
+              <p class="site-author-name" itemprop="name">Swallow</p>
               <p class="site-description motion-element" itemprop="description">I don't know go where, but i have been on the road</p>
           </div>
 
@@ -451,7 +510,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -462,7 +521,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -486,22 +545,6 @@
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#二进制、十进制、十六进制数字的互转"><span class="nav-number">1.</span> <span class="nav-text">二进制、十进制、十六进制数字的互转</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -519,7 +562,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">yanzi</span>
+  <span class="author" itemprop="copyrightHolder">swallow</span>
 
   
 </div>
@@ -533,7 +576,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -553,6 +596,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -632,6 +677,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
