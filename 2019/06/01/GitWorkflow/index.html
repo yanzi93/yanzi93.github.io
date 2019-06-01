@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="集中式工作流集中式工作流以中央仓库作为项目所有修改的单点实体。 首先，开发者克隆中央仓库。在本地客隆仓库中进行项目开发，当开发者开发完完成后，将本地master分支push    到中央仓库中。开发者在提交前，需要先fetch在中央仓库的新增提交，rebase自己提交到中央仓库提交历史上。即==我要把自己的修改加到别人已经完成的修改上。==  示例 服务器创建中央仓库。 central repos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git工作流简介">
+<meta property="og:url" content="http://yoursite.com/2019/06/01/GitWorkflow/index.html">
+<meta property="og:site_name" content="Swallow Home">
+<meta property="og:description" content="集中式工作流集中式工作流以中央仓库作为项目所有修改的单点实体。 首先，开发者克隆中央仓库。在本地客隆仓库中进行项目开发，当开发者开发完完成后，将本地master分支push    到中央仓库中。开发者在提交前，需要先fetch在中央仓库的新增提交，rebase自己提交到中央仓库提交历史上。即==我要把自己的修改加到别人已经完成的修改上。==  示例 服务器创建中央仓库。 central repos">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-01T11:28:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git工作流简介">
+<meta name="twitter:description" content="集中式工作流集中式工作流以中央仓库作为项目所有修改的单点实体。 首先，开发者克隆中央仓库。在本地客隆仓库中进行项目开发，当开发者开发完完成后，将本地master分支push    到中央仓库中。开发者在提交前，需要先fetch在中央仓库的新增提交，rebase自己提交到中央仓库提交历史上。即==我要把自己的修改加到别人已经完成的修改上。==  示例 服务器创建中央仓库。 central repos">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/01/GitWorkflow/"/>
+
+
+
+
+
+  <title>Git工作流简介 | Swallow Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Swallow Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/GitWorkflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Swallow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avator.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swallow Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git工作流简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-01T19:26:41+08:00">
+                2019-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="集中式工作流"><a href="#集中式工作流" class="headerlink" title="集中式工作流"></a>集中式工作流</h2><p>集中式工作流以中央仓库作为项目所有修改的单点实体。</p>
+<p>首先，开发者克隆中央仓库。在本地客隆仓库中进行项目开发，当开发者开发完完成后，将本地<code>master</code>分支<code>push</code>    到中央仓库中。开发者在提交前，需要先<code>fetch</code>在中央仓库的新增提交，<code>rebase</code>自己提交到中央仓库提交历史上。即==我要把自己的修改加到别人已经完成的修改上。== </p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ol>
+<li><p>服务器创建中央仓库。</p>
+<p>central repository应该是一个bare repository，没有working directory。</p>
+<p><code></code>git init –bare /path/to/repo.git`</p>
+</li>
+<li><p>开发者克隆中央仓库</p>
+<p><code>git clone ssh:user@host/path/to/repo.git</code></p>
+<p>clone repository自动添加远程别名<strong><code>origin</code>指向parent repository</strong>。</p>
+</li>
+<li><p>开发者开发功能</p>
+<p>local repository开发功能，与central repository无关。</p>
+<p><code>git status  #check local repository status</code></p>
+<p><code>git add  #stage file</code></p>
+<p><code>git commit  #commit file</code></p>
+</li>
+<li><p>分布功能</p>
+<ul>
+<li><p>第一次提交／无冲突提交</p>
+<p>将local repository <code>push</code>到central repository。</p>
+<p><code>git push origin master</code></p>
+</li>
+<li><p>冲突提交</p>
+<ol>
+<li><p>local repository和central repository同步</p>
+<p>开发者需要<code>pull</code>central repository更新到local repository<code>merge</code>本地修改。</p>
+<p><code>git pull --rebase origin master</code></p>
+<p>解决冲突：</p>
+<ul>
+<li>当出现冲突，使用<code>git status</code>查看冲突问题。</li>
+<li>修改冲突文件，使用<code>git add &lt;some-file&gt;</code></li>
+<li>继续合并<code>git rebase --continue</code></li>
+<li>冲突无法解决<code>git rebase --abort</code>撤销合并</li>
+</ul>
+</li>
+<li><p>发布合并后的修改</p>
+<p><code>git push origin master</code></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="功能分支工作流"><a href="#功能分支工作流" class="headerlink" title="功能分支工作流"></a>功能分支工作流</h2><p>所有功能开发在专门的分支上，隔离master分支的主代码被修改。</p>
+<p>每个开发者，需要在local repository的branch（不是master）上开发。完成开发后<code>push</code>到central repository的branch上，并发起<code>Pull Request</code>请求，将修改<code>merge</code>到master上，成为主干代码前，让其他开发者有机会先去<code>Review</code>变更。</p>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><ol>
+<li><p>开发者开发功能</p>
+<p>在local repository上创建feature branch。</p>
+<p><code>git checkout -b marys-feature master</code></p>
+<p>在master上创建marys-feature分支，并在该分支进行开发。</p>
+</li>
+<li><p>开发者提交新功能</p>
+<p>备份、开发协作（其他开发者看到新功能）</p>
+<p><code>git push -u origin marys-feature</code></p>
+<p>将marys-feature分支<code>push</code>到central repository。</p>
+<p><code>-u</code>表示同时设置origin为upstream。下次可直接使用<code>git push</code></p>
+</li>
+<li><p>开发者完成功能开发</p>
+<ul>
+<li><p><code>merge</code>到<code>master</code>前，发起<code>Pull Request</code>，发起前确保新功能已提交到central repository。</p>
+</li>
+<li><p>发起<code>Pull Request</code>后，其他成员收到通知，并进行讨论或将分支拉到本地进行修改。</p>
+</li>
+<li><p>开发者和其他成员进行修改会在<code>Pull Request</code>中显示。</p>
+</li>
+<li><p>其他成员接受<code>Pull Request</code>后，可以进行合并。</p>
+<ul>
+<li><p><code>git checkout master</code></p>
+<p><code>git pull</code></p>
+<p>检查并确保master处于最新。</p>
+</li>
+<li><p><code></code>git pull origin marys-feature`</p>
+<p>将<code>origin</code>合并到marys-feature分支上。</p>
+</li>
+<li><p><code>git push</code></p>
+<p>提交到central repository上。</p>
+</li>
+<li><p>关闭<code>Pull Request</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Gitflow工作流"><a href="#Gitflow工作流" class="headerlink" title="Gitflow工作流"></a>Gitflow工作流</h2><p>围绕项目发布的严格分支模型。为不同的branch分配明确的角色，并定义branch之间如何进行交互。</p>
+<p>Gitflow工作流使用两个分支记录项目历史。</p>
+<p>分支介绍：</p>
+<ul>
+<li><p>历史分支</p>
+<p><code>master</code>存储正式发布历史；</p>
+<p><code>develop</code>为功能的集成分支。</p>
+</li>
+<li><p>功能分支</p>
+<p><code>feature</code>开发者进行功能开发。</p>
+<ul>
+<li><p>从<code>develop</code>上创建feature branch进行功能开发，使用<code>develop</code>作为parent branch。</p>
+</li>
+<li><p>开发完成后，合并到<code>develop</code>上。不直接与<code>master</code>分支交互。</p>
+</li>
+</ul>
+</li>
+<li><p>发布分支。</p>
+<p><code>release</code>用于循环发布，仅做bug修复、文档生成和其他面向发布的任务。</p>
+<ul>
+<li>当功能开发完成后，从<code>develop</code>上<code>checkout</code>一个发布分支。</li>
+<li>新发布完成后，<code>release</code>合并到<code>master</code>分支上并分配一个版本号打好<code>Tag</code></li>
+<li>新发布分支的修改合并回<code>develop</code>。</li>
+</ul>
+</li>
+<li><p>维护分支／热修复</p>
+<p><code>hotfix</code>用于给production releases快速生成<code>patch</code>。</p>
+<ul>
+<li>唯一直接从<code>master</code>上<code>fork</code>出来的分支。</li>
+<li>修复bug后，立马合并回<code>master</code>和<code>develop</code>分支，并对<code>master</code>用新的版本后打好<code>Tag</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><ol>
+<li><p>从<code>master</code>配套<code>develop</code>分支。</p>
+<p>从本地创建空<code>develop</code>分支<code>push</code>到服务器上。</p>
+<p><code>git branch develop</code></p>
+<p><code>git push -u origin develop</code></p>
+</li>
+<li><p>开发者克隆仓库</p>
+<p><code>git clone user@host/path/to/repo.git</code></p>
+<p><code>git checkout -b develop origin/develop</code></p>
+</li>
+<li><p>开发者开发新功能</p>
+<p><code>git checkout -b some-feature develop</code></p>
+</li>
+<li><p>开发者开发完成</p>
+<p>发起<code>Pull Request</code>合并到<code>develop</code>分支，或者直接合并到本地<code>develop</code>分支后<code>push</code>到central repository。</p>
+<p><code>git pull origin develop</code></p>
+<p><code>git checkout develop</code></p>
+<p><code>git merge some-feature</code></p>
+<p><code>git push</code></p>
+<p><code>git branch -d some-feature</code></p>
+</li>
+<li><p>准备发布</p>
+<p><code>git checkout -b release-0.1 develop</code></p>
+<p>创建该分支，并<code>push</code>到central repository上，发布功能冻结。任何不在<code>develop</code>伤的新功能将推到下个发布循环中。</p>
+</li>
+<li><p>完成发布</p>
+<p><code>git checkout master</code></p>
+<p><code>git merge release-0.1</code></p>
+<p><code>git push</code></p>
+<p><code>git checkout develop</code></p>
+<p><code>git merge release-0.1</code></p>
+<p><code>git push</code></p>
+<p><code>git branch -d release-0.1</code></p>
+<p>将修改合并到<code>maste</code>r和<code>develop</code>分支上，删除发布分支。并对<code>master</code>分支打好<code>Tag</code>。</p>
+<p><code>git tag -a 0.1 -m &quot;Initial public release&quot; master</code></p>
+<p><code>git push --tags</code></p>
+</li>
+<li><p>修复bug</p>
+<ul>
+<li><p>从<code>master</code>分支拉出维护分支</p>
+<p><code>git checkout -b issue-#001 master</code></p>
+</li>
+<li><p>修复bug后</p>
+<p><code>git checkout master</code></p>
+<p><code>git merge issue-#001</code></p>
+<p><code>git push</code></p>
+</li>
+<li><p>将修改信息包含到<code>develop</code>后，删除维护分支</p>
+<p><code>git checkout develop</code></p>
+<p><code>git merge issue-#001</code></p>
+<p><code>git push</code></p>
+<p><code>git branch -d issue-#001</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Forking工作流"><a href="#Forking工作流" class="headerlink" title="Forking工作流"></a>Forking工作流</h2><p>各个开发者都有一个服务端repository，每个开发者都有两个git仓库，一个本地私有、一个服务端公开。</p>
+<p>各个开发者<code>push</code>到自己的服务端repository，==只有项目维护者才能<code>push</code>到正式repository==。适合大型、自发性团队（包括不受信的第三方）。</p>
+<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><ol>
+<li><p>初始化正式仓库</p>
+<p>该repository所有成员可以访问，作为项目维护者的公开仓库。</p>
+<p><code>git init --bare /path/to/repo.git</code></p>
+</li>
+<li><p>开发者<code>fork</code>正式仓库到服务端</p>
+<p><code>git clone user@host /path/to/repo.git</code></p>
+</li>
+<li><p>开发者在服务端创建一个自己的仓库</p>
+</li>
+<li><p>开发者<code>fork</code>自己的仓库到本地</p>
+<p>local repository有两个远程别名，</p>
+<ul>
+<li><p>origin指向远程克隆repository</p>
+</li>
+<li><p>upstream指向正式仓库</p>
+<p><code>git remote add upstream https:/XXX/repo</code></p>
+</li>
+</ul>
+</li>
+<li><p>开发者开发功能</p>
+<p>在本地feature branch开发，并<code>push</code>到自己公开仓库中。</p>
+<p>并且保证与正式仓库同步</p>
+<p><code>git pull upstearm master</code></p>
+</li>
+<li><p>开发者发布功能</p>
+<p><code>git push origin feature-branch</code></p>
+<p>注意此处<code>origin</code>是指服务端安自己的仓库。</p>
+<p>同时发布<code>Pull Request</code>通知维护者合并新功能到正式仓库中。</p>
+</li>
+<li><p>维护者集成开发者功能</p>
+<p>两种方式</p>
+<ul>
+<li><p><code>Pull Request</code>中查看，评注，合并。</p>
+</li>
+<li><p>存在冲突，使用<code>pull</code>到本地仓库，手动合并。</p>
+<ul>
+<li><p>本地常见分支拷贝</p>
+<p><code>git fetch https:/path/repo feature-branch</code></p>
+</li>
+<li><p>查看变更不同，合并到<code>master</code></p>
+<p><code>git diff feature-branch</code></p>
+<p><code>git checkout master</code></p>
+<p><code>git merge FETCH_HEAD</code></p>
+</li>
+<li><p><code>push</code>到正式仓库</p>
+<p><code>git push origin master</code></p>
+<p>维护者的<code>origin</code>是正式仓库</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>开发者和正式仓库同步</p>
+<p><code>git pull upstream master</code></p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Swallow
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/06/01/GitWorkflow/" title="Git工作流简介">http://yoursite.com/2019/06/01/GitWorkflow/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/13/进制转换/" rel="next" title="进制转换">
+                <i class="fa fa-chevron-left"></i> 进制转换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avator.jpeg"
+                alt="Swallow" />
+            
+              <p class="site-author-name" itemprop="name">Swallow</p>
+              <p class="site-description motion-element" itemprop="description">I don't know go where, but I have been on the road</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集中式工作流"><span class="nav-number">1.</span> <span class="nav-text">集中式工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能分支工作流"><span class="nav-number">2.</span> <span class="nav-text">功能分支工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-1"><span class="nav-number">2.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitflow工作流"><span class="nav-number">3.</span> <span class="nav-text">Gitflow工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-2"><span class="nav-number">3.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Forking工作流"><span class="nav-number">4.</span> <span class="nav-text">Forking工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-3"><span class="nav-number">4.1.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">swallow</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
