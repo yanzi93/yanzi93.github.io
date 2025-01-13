@@ -1,0 +1,21 @@
+{
+  "publicPath": "/",
+  "entries": {
+    "main": [
+      "js/framework.js",
+      "js/59.js",
+      "css/main.css",
+      "js/main.js"
+    ]
+  },
+  "pages": {
+    "index": [
+      "js/908.js",
+      "css/p_index.css",
+      "js/p_index.js"
+    ]
+  },
+  "assets": {
+    "src/assets/bac.jpg": "bdb81900"
+  }
+}
